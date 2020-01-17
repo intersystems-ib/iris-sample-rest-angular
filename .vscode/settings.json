@@ -1,0 +1,8 @@
+{
+    "objectscript.conn.port": 52773,
+    "objectscript.conn.username": "superuser",
+    "objectscript.conn.password": "SYS",
+    "objectscript.export.folder": "backend/src",
+    "objectscript.conn.active": true,
+    "objectscript.conn.ns": "MYAPP"
+}

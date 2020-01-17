@@ -1,0 +1,13 @@
+version: '3.2'
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: backend
+    container_name: iris
+    ports:
+    - "51773:51773"
+    - "52773:52773"
+    volumes:
+    - ./backend:/app
