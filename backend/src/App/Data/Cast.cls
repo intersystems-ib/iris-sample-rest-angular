@@ -13,11 +13,16 @@ Property id As %Integer(%JSONINCLUDE = "OUTPUTONLY") [ Calculated, SqlComputeCod
 
 Property name As %String(MAXLEN = "");
 
-Property role As %String(MAXLEN = "");
+Property actingRole As %String(MAXLEN = "");
 
 Relationship show As App.Data.Show(%JSONINCLUDE = "INOUT", %JSONREFERENCE = "ID") [ Cardinality = one, Inverse = cast ];
 
 Index showIndex On show;
+
+ClassMethod queryFIND() As %String
+{
+  quit "id, name, actingRole "
+}
 
 Storage Default
 {
@@ -29,7 +34,7 @@ Storage Default
 <Value>name</Value>
 </Value>
 <Value name="3">
-<Value>role</Value>
+<Value>actingRole</Value>
 </Value>
 <Value name="4">
 <Value>show</Value>

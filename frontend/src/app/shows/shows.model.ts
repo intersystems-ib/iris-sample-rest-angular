@@ -7,5 +7,5 @@ export interface Show {
 export interface Cast {
     id: number;
     name: string;
-    rol: string;
+    actingRole: string;
 }

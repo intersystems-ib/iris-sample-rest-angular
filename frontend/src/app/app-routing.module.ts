@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'shows/latest',
-    pathMatch: 'full'
+  { 
+    path: '', 
+    redirectTo: 'shows/latest', 
+    pathMatch: 'full' 
   },
   {
     path: 'shows',
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'shows/latest'
+    redirectTo: '/'
   }
 ];
 

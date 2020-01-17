@@ -2,22 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ShowLatestComponent } from './show-latest/show-latest.component';
+import { CastListComponent } from './cast-list/cast-list.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
-    path: '',
-    component: ShowLatestComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'latest/',
-        pathMatch: 'full'
-      },
-      {
-        path: 'latest',
-        component: ShowLatestComponent
-      }
-    ]
+    path: 'latest',
+    component: ShowLatestComponent
+  },
+  {
+    path: ':id/cast',
+    component: CastListComponent
   }
 ];
 
