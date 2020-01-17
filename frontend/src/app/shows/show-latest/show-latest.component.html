@@ -1,1 +1,27 @@
-<p>show-latest works!</p>
+<mat-card *ngFor="let show of shows$ | async" class="show-card mat-elevation-z10">
+
+  <mat-card-header>
+    <mat-card-title>{{show.title}}</mat-card-title>
+  </mat-card-header>
+
+  <!--
+  <img mat-card-image [src]="show.imgUrl">
+  -->
+
+  <mat-card-content>
+    <p>{{ show.description }}</p>
+  </mat-card-content>
+
+  <mat-card-actions class="show-actions">
+    <button mat-raised-button color="primary" [routerLink]="['/shows', show.id]">
+      Cast
+    </button>
+    <button mat-mini-fab color="accent">
+      <mat-icon class="add-show-btn" (click)="editShow(show)">edit</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn">
+      <mat-icon class="add-show-btn" (click)="deleteShow(show)">delete</mat-icon>
+    </button>
+  </mat-card-actions>
+
+</mat-card>

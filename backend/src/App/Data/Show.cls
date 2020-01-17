@@ -17,6 +17,11 @@ Property description As %String(MAXLEN = "");
 
 Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, Inverse = show ];
 
+ClassMethod queryFIND() As %String
+{
+  quit "id, title, description "
+}
+
 Storage Default
 {
 <Data name="ShowDefaultData">
