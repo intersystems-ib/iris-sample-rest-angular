@@ -28,8 +28,7 @@ export class CastListComponent implements OnInit {
   ngOnInit() {
     
     const showId = this.route.snapshot.paramMap.get("id");
-    console.log(showId);
-
+   
     this.show$ = this.showsService.findShowById(+showId).pipe();
     this.casting$ = this.showsService.findCastByShow(+showId).pipe();
 

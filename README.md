@@ -11,3 +11,4 @@ ng generate component shows/show-latest
 ng generate service shows/services/shows
 
 ng generate component shows/cast-list
+ng generate component shows/show-list
