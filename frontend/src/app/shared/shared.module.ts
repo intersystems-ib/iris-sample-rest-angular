@@ -9,7 +9,10 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
-  MatDividerModule
+  MatDividerModule,
+  MatSidenavModule,
+  MatProgressSpinnerModule,
+  MatListModule
 } from '@angular/material';
 
 const mm = [ 
@@ -20,7 +23,10 @@ const mm = [
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
-  MatDividerModule
+  MatDividerModule,
+  MatSidenavModule,
+  MatProgressSpinnerModule,
+  MatListModule
 ]
 
 @NgModule({
