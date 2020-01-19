@@ -1,0 +1,48 @@
+
+<h2 mat-dialog-title>Edit a Show</h2>
+
+<mat-dialog-content>
+
+  <ng-container *ngIf="form">
+    <div class="spinner-container" *ngIf="loading$ | async">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <ng-container [formGroup]="form">
+      <mat-form-field>
+        <input matInput
+               placeholder="Title"
+               formControlName="title">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Description"
+                  formControlName="description">
+        </textarea>
+
+      </mat-form-field>
+
+    </ng-container>
+
+
+  </ng-container>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button mat-raised-button (click)="onClose()">
+    Close
+  </button>
+
+  <button mat-raised-button color="primary"
+          [disabled]="!form?.valid || (this.loading$ | async)"
+          (click)="onSave()">
+    Save
+  </button>
+
+</mat-dialog-actions>
+
+
+
+

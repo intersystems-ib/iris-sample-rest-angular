@@ -12,3 +12,4 @@ ng generate service shows/services/shows
 
 ng generate component shows/cast-list
 ng generate component shows/show-list
+ng generate component shows/show-edit-dialog

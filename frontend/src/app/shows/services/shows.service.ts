@@ -43,14 +43,23 @@ export class ShowsService {
     );
   }
 
-
-  findCastByShow(showId: number): Observable<Cast[]> {
-    return this.http.get(
-      this.urlBase + '/objects/App.Data.Cast/find',
+  findCastByShow(id: number): Observable<Cast[]> {
+    return this.http.get<Cast[]>(
+      this.urlBase + `/objects/App.Data.Cast/find?filter=show+eq+${id}`,
       this.options
     ).pipe(
       tap(data => console.log(data)),
       map(res => res['children'])
+    );
+  }
+
+
+  saveShow(id: number, show: Show) {
+    return this.http.put(
+      this.urlBase + `/object/App.Data.Show/${id}`,
+      show,
+      this.options
+    ).pipe(
     );
   }
 
