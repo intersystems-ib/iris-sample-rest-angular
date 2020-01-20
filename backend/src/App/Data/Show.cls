@@ -9,7 +9,9 @@ Parameter DISPLAYPROPERTY As %String = "title";
 
 Parameter FORMORDERBY As %String = "title";
 
-Property id As %Integer(%JSONINCLUDE = "OUTPUTONLY") [ Calculated, SqlComputeCode = { set {*}={%%ID}}, SqlComputed ];
+Property showid As %Integer(%JSONFIELDNAME = "id", %JSONINCLUDE = "OUTPUTONLY");
+
+Index showidIdx On showid [ IdKey, PrimaryKey, Unique ];
 
 Property title As %String(MAXLEN = "");
 
@@ -19,7 +21,7 @@ Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, 
 
 ClassMethod queryFIND() As %String
 {
-  quit "id, title, description "
+  quit "showid id, title, description "
 }
 
 Storage Default
