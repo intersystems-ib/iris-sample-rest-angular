@@ -10,7 +10,17 @@
     </div>
   
     <mat-table class="casting-table mat-elevation-z8" [dataSource]="casting$ | async">
-        <ng-container matColumnDef="id">
+      
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let cast">
+          <button mat-icon-button (click)="editCast(cast)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
         <mat-cell *matCellDef="let cast">{{ cast.id }}</mat-cell>
       </ng-container>

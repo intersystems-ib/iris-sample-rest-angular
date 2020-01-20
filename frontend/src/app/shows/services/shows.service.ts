@@ -13,13 +13,12 @@ export class ShowsService {
 
   constructor(private http:HttpClient) { }
 
-
   findShows(): Observable<Show[]> {
     return this.http.get(
       this.urlBase + '/objects/App.Data.Show/find',
       this.options
     ).pipe(
-      tap(data => console.log(data)),
+      //tap(data => console.log(data)),
       map(res => res['children'])
     );
   }
@@ -29,7 +28,7 @@ export class ShowsService {
       this.urlBase + '/objects/App.Data.Show/find',
       this.options
     ).pipe(
-      tap(data => console.log(data)),
+      //tap(data => console.log(data)),
       map(res => res['children'])
     );
   }
@@ -39,7 +38,7 @@ export class ShowsService {
       this.urlBase + `/object/App.Data.Show/${id}`,
       this.options
     ).pipe(
-      tap(data => console.log(data)),
+      //tap(data => console.log(data)),
     );
   }
 
@@ -48,16 +47,24 @@ export class ShowsService {
       this.urlBase + `/objects/App.Data.Cast/find?filter=show+eq+${id}`,
       this.options
     ).pipe(
-      tap(data => console.log(data)),
+      //tap(data => console.log(data)),
       map(res => res['children'])
     );
   }
-
 
   saveShow(id: number, show: Show) {
     return this.http.put(
       this.urlBase + `/object/App.Data.Show/${id}`,
       show,
+      this.options
+    ).pipe(
+    );
+  }
+
+  saveCast(id: number, cast: Cast) {
+    return this.http.put(
+      this.urlBase + `/object/App.Data.Cast/${id}`,
+      cast,
       this.options
     ).pipe(
     );

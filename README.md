@@ -1,6 +1,5 @@
 
 
-
 ng new webapp --directory=frontend --routing=true --skipGit --style=scss
 ng add @angular/material
 
@@ -13,3 +12,4 @@ ng generate service shows/services/shows
 ng generate component shows/cast-list
 ng generate component shows/show-list
 ng generate component shows/show-edit-dialog
+ng generate component shows/cast-edit-dialog

@@ -10,10 +10,11 @@ import { CastListComponent } from './cast-list/cast-list.component';
 import { ShowListComponent } from './show-list/show-list.component';
 import { ShowEditDialogComponent } from './show-edit-dialog/show-edit-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CastEditDialogComponent } from './cast-edit-dialog/cast-edit-dialog.component';
 
 
 @NgModule({
-  declarations: [ShowLatestComponent, CastListComponent, ShowListComponent, ShowEditDialogComponent],
+  declarations: [ShowLatestComponent, CastListComponent, ShowListComponent, ShowEditDialogComponent, CastEditDialogComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -25,6 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     ShowsService
   ],
-  entryComponents: [ShowEditDialogComponent],
+  entryComponents: [ 
+    ShowEditDialogComponent, 
+    CastEditDialogComponent
+  ],
 })
 export class ShowsModule { }

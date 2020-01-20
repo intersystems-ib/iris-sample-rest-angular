@@ -23,35 +23,24 @@ export class ShowLatestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.init();
+    this.loadData();
   }
 
-  init() {
-
-    //this.shows$ = this.showsService.findLatestShows().pipe();
-    this.shows$ = this.showsService.findLatestShows()
-    .pipe(
-      map(show => show)
-    );
-    
+  loadData() {
+    this.shows$ = this.showsService.findLatestShows().pipe();  
   }
 
   editShow(show:Show) {
-
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
     dialogConfig.width = '400px';
     dialogConfig.data = {
-      dialogTitle:"Edit Course",
+      dialogTitle:"Edit a Show",
       show,
       mode: 'update'
     };
 
-    this.dialog.open(ShowEditDialogComponent, dialogConfig)
-      .afterClosed()
-      //.subscribe(() => this.courseChanged.emit());
-
-}
+    this.dialog.open(ShowEditDialogComponent, dialogConfig).afterClosed()
+    .subscribe(() => this.loadData());
+  }
   
 }
