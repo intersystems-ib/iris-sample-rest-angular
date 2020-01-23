@@ -9,7 +9,16 @@
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+      <!--<mat-header-cell *matHeaderCellDef>Title</mat-header-cell>-->
+      
+      <mat-header-cell *matHeaderCellDef>
+        <div fxLayout="column">
+          <mat-form-field>
+            <input matInput placeholder="Title" [(ngModel)]="filters.title" (change)="onChangeFilter($event)">
+          </mat-form-field>
+        </div>
+      </mat-header-cell>
+
       <mat-cell *matCellDef="let show">{{ show.title }}</mat-cell>
     </ng-container>
 

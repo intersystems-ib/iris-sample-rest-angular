@@ -15,6 +15,7 @@ export class ShowListComponent implements AfterViewInit {
   shows$: Observable<Show[]>;
   totalResults: number = 0;
   displayedColumns = ['id', 'title', 'description'];
+  filters: any = {};
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(
@@ -30,7 +31,7 @@ export class ShowListComponent implements AfterViewInit {
 
   getDataPage(pageIndex: number, pageSize: number) {
     this.cdr.detectChanges();
-    this.shows$ = this.showsService.findShows(pageIndex + 1, pageSize).pipe(
+    this.shows$ = this.showsService.findShows(pageIndex + 1, pageSize, this.buildQuery()).pipe(
       tap(res => {
         this.totalResults = res['total']
       }),
@@ -40,6 +41,27 @@ export class ShowListComponent implements AfterViewInit {
 
   onChangePage(event?: PageEvent) {
     this.getDataPage(event.pageIndex, event.pageSize);
+  }
+
+  onChangeFilter(value): void {
+    this.paginator.firstPage();
+    this.getDataPage(this.paginator.pageIndex, this.paginator.pageSize);
+  }
+
+  /**
+   * Build server query from filters
+   */
+  buildQuery(): any {
+    const query = {};
+    for (const filter in this.filters) {
+      if (this.filters.hasOwnProperty(filter)) {
+        const value = this.filters[filter];
+        if (value && value !== '') {
+          query[filter] = this.filters[filter];
+        }
+      }
+    }
+    return query;
   }
 
 }

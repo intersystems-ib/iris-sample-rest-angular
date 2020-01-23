@@ -13,9 +13,13 @@ export class ShowsService {
 
   constructor(private http:HttpClient) { }
 
-  findShows(pageIndex: number, pageSize: number): Observable<QueryResult<Show>> {
+  findShows(pageIndex: number, pageSize: number, query: any): Observable<QueryResult<Show>> {
+
+    let filter = '';
+    if (query.title) { filter += `title+contains+${query.title}`; }
+    
     return this.http.get<QueryResult<Show>>(
-      this.urlBase + `/objects/App.Data.Show/find?size=${pageSize}&page=${pageIndex}`,
+      this.urlBase + `/objects/App.Data.Show/find?size=${pageSize}&page=${pageIndex}&collation=UPPER&filter=${filter}`,
       this.options
     ).pipe(
       //tap(data => console.log(data))
