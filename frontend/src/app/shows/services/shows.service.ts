@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
-import { Show, Cast } from '../shows.model';
+import { Show, Cast, QueryResult } from '../shows.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +13,21 @@ export class ShowsService {
 
   constructor(private http:HttpClient) { }
 
-  findShows(): Observable<Show[]> {
-    return this.http.get(
-      this.urlBase + '/objects/App.Data.Show/find',
+  findShows(pageIndex: number, pageSize: number): Observable<QueryResult<Show>> {
+    return this.http.get<QueryResult<Show>>(
+      this.urlBase + `/objects/App.Data.Show/find?size=${pageSize}&page=${pageIndex}`,
       this.options
     ).pipe(
-      //tap(data => console.log(data)),
-      map(res => res['children'])
+      //tap(data => console.log(data))
     );
   }
 
-  findLatestShows(): Observable<Show[]> {
-    return this.http.get(
-      this.urlBase + '/objects/App.Data.Show/find',
+  findLatestShows(): Observable<QueryResult<Show>> {
+    return this.http.get<QueryResult<Show>>(
+      this.urlBase + '/objects/App.Data.Show/find?size=10&page=1&collation=UPPER&orderby=1+desc',
       this.options
     ).pipe(
-      //tap(data => console.log(data)),
-      map(res => res['children'])
+      //tap(data => console.log(data))
     );
   }
 

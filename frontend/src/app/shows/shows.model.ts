@@ -9,3 +9,8 @@ export interface Cast {
     name: string;
     actingRole: string;
 }
+
+export interface QueryResult<T> {
+    children: T[],
+    total: number;
+}

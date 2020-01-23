@@ -27,7 +27,9 @@ export class ShowLatestComponent implements OnInit {
   }
 
   loadData() {
-    this.shows$ = this.showsService.findLatestShows().pipe();  
+    this.shows$ = this.showsService.findLatestShows().pipe(
+      map(res => res['children'])
+    );  
   }
 
   editShow(show:Show) {
