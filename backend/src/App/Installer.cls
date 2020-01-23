@@ -10,6 +10,7 @@ XData Install [ XMLNamespace = INSTALLER ]
 <Manifest> 
     <Namespace Name="${Namespace}" Create="yes" Ensemble="">
         <Import File="${SourcePath}" Recurse="1" Flags="cuk" />
+        <Production Name="App.Prod" AutoStart="1"/>
     </Namespace> 
 </Manifest>
 }
