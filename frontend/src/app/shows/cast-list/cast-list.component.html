@@ -1,10 +1,8 @@
 <div class="show" *ngIf="(show$ | async) as show">
 
     <h2>{{show?.title}}</h2>
-    <!--
-    <img class="show-thumbnail mat-elevation-z8" [src]="show?.iconUrl">
-    -->
-
+    <h3>Casting</h3>
+    
     <div class="spinner-container" *ngIf="(loading$ | async )">
       <mat-spinner></mat-spinner>
     </div>
