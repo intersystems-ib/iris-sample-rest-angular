@@ -14,12 +14,14 @@ export class ShowsService {
   constructor(private http:HttpClient) { }
 
   findShows(pageIndex: number, pageSize: number, query: any): Observable<QueryResult<Show>> {
-
     let filter = '';
-    if (query.title) { filter += `title+contains+${query.title}`; }
+    if (query.title) { filter += `+title+contains+${query.title}`; }
+    
+    let escapedFilter = filter.replace(new RegExp(' ', 'g'), '%09');
+    escapedFilter = escapedFilter.replace(new RegExp('\\+'), '');
     
     return this.http.get<QueryResult<Show>>(
-      this.urlBase + `/objects/App.Data.Show/find?size=${pageSize}&page=${pageIndex}&collation=UPPER&filter=${filter}`,
+      this.urlBase + `/objects/App.Data.Show/find?size=${pageSize}&page=${pageIndex}&collation=UPPER&filter=${escapedFilter}`,
       this.options
     ).pipe(
       //tap(data => console.log(data))
