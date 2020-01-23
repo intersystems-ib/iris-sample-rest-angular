@@ -64,8 +64,10 @@ client_id = 'client';
   public authenticated(): boolean {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const token = currentUser && currentUser.token;
-    if (this._token && token) {
-      this._token.next(token);
+    if (token) {
+      if (this._token) {
+        this._token.next(token);
+      }
       return true;
     }
     return false;
