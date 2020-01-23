@@ -13,3 +13,8 @@ ng generate component shows/cast-list
 ng generate component shows/show-list
 ng generate component shows/show-edit-dialog
 ng generate component shows/cast-edit-dialog
+
+ng generate module auth --routing
+ng generate component auth/login
+ng generate component auth/logout
+ng generate service auth/services/auth

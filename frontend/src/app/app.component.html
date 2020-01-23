@@ -2,12 +2,20 @@
 
   <mat-sidenav #sidenav>
     <mat-nav-list (click)="sidenav.close()">
+      <a mat-list-item routerLink="/auth/login" *ngIf="!(isLoggedIn$ | async)">
+        <mat-icon>account_circle</mat-icon>
+        <span>Login</span>
+      </a>
+      <a mat-list-item routerLink="/auth/logout" *ngIf="(isLoggedIn$ | async)">
+        <mat-icon>toggle_off</mat-icon>
+        <span>Logout</span>
+      </a>
       <a mat-list-item routerLink="/shows/latest">
-        <mat-icon>library_books</mat-icon>
+        <mat-icon>view_carousel</mat-icon>
         <span>Latest Shows</span>
       </a>
       <a mat-list-item routerLink="/shows">
-        <mat-icon>library_books</mat-icon>
+        <mat-icon>view_list</mat-icon>
         <span>All Shows</span>
       </a>
     </mat-nav-list>
