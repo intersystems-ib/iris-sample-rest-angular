@@ -13,14 +13,11 @@
   </mat-card-content>
 
   <mat-card-actions class="show-actions">
-    <button mat-raised-button color="primary" [routerLink]="['/shows/' + show.id + '/cast']">
-      Cast
+    <button mat-mini-fab color="primary" [routerLink]="['/shows/' + show.id + '/cast']" matTooltip="Casting">
+       <mat-icon>people_alt</mat-icon>
     </button>
-    <button mat-mini-fab color="accent">
+    <button mat-mini-fab color="accent" matTooltip="Edit Show">
       <mat-icon class="add-show-btn" (click)="editShow(show)">edit</mat-icon>
-    </button>
-    <button mat-mini-fab color="warn">
-      <mat-icon class="add-show-btn" (click)="deleteShow(show)">delete</mat-icon>
     </button>
   </mat-card-actions>
 

@@ -13,7 +13,8 @@ import {
   MatSidenavModule,
   MatProgressSpinnerModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatTooltipModule
 } from '@angular/material';
 
 const mm = [ 
@@ -28,7 +29,8 @@ const mm = [
   MatSidenavModule,
   MatProgressSpinnerModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatTooltipModule
 ]
 
 @NgModule({
