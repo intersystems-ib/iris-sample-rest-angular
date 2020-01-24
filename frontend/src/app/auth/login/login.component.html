@@ -1,26 +1,36 @@
-<div *ngIf="form">
+<div class="back">
+  <div class="div-center">
+    <div class="content">
 
-  <div class="spinner-container" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-  </div>
+      <div *ngIf="form">
 
-  <div [formGroup]="form" *ngIf="!loading">
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username">
-      </mat-form-field>
+        <h2>Login</h2>
+
+        <div class="spinner-container" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <div [formGroup]="form" *ngIf="!loading">
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="Username" formControlName="username">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <input type="password" matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div>
+          <button mat-raised-button color="primary" [disabled]="!form?.valid || (this.loading)" (click)="onLogin()">
+            Login
+          </button>
+        </div>
+      </div>
+
     </div>
-
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Password" formControlName="password">
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div>
-    <button mat-raised-button color="primary" [disabled]="!form?.valid || (this.loading)" (click)="onLogin()">
-      Login
-    </button>
   </div>
 </div>
