@@ -36,3 +36,11 @@ $ docker-compose up
 Tras la instalación, tendrás: 
 * InterSystems IRIS - http://localhost:52773/csp/sys/UtilHome.csp
 * Aplicación Web Angular - http://localhost:4200
+
+# ¿Qué vamos a desarrollar?
+* Partiremos de un sistema que es capaz de procesar un *dataset* con información sobre NetFlix
+* La información procesada se almacenará en clases persistentes en IRIS
+* Expondremos la información almacenada en *JSON* a través de interfaces *REST* para poder consumirla desde una aplicación *Angular*
+* Desarrollaremos nuevas funcionalidades sobre la aplicación web.
+
+<img src="./img/iris-webapp-diagram.png" width=700>
