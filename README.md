@@ -45,8 +45,16 @@ Tras la instalación, tendrás:
 <img src="./img/iris-webapp-diagram.png" width=700>
 
 # Backend
+NOTA: utiliza el usuario y password por defecto *superuser* / *SYS*
+
 ## Examinar *dataset* NetFlix
-* En IRIS tenemos creada una producción (*Interoperabilidad*) que se encarga de procesar un CSV con un *dataset* de Netflix.
-* Echa un vistazo a la producción y a los mensajes procesados
-http://localhost:52773/csp/myapp/EnsPortal.ProductionConfig.zen?PRODUCTION=App.Prod
+* En IRIS tenemos creada una producción que se encarga de procesar un CSV con un *dataset* de Netflix.
+* Echa un vistazo a la producción y a los mensajes procesados en [Interoperability](http://localhost:52773/csp/myapp/EnsPortal.ProductionConfig.zen?PRODUCTION=App.Prod)
+
+## Explora los datos utilizando SQL / Objetos / JSON
+* Prueba a hacer un SELECT sobre la tabla `App_Data.Show` en el [SQL Explorer](http://localhost:52773/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=MYAPP)
+* Examina también a través de objetos la información cargada utilizando una sesión de [WebTerminal](http://localhost:52773/terminal/).
+```objectscript
+set show = ##class(App.Data.Show).%OpenId(449931)
+```
 
