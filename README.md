@@ -80,3 +80,14 @@ RESTForms2 ya está instalado en el contenedor *backend* de IRIS que estamos uti
 * Prueba los diferentes ejemplos incluídos en la colección.
 <img src="./img/postman-restforms2.png" width=700>
 
+Utilizaremos esta API REST generada automáticamente como base para la comunicación entre el *frontend* y el *backend*.
+
+# Frontend
+
+## Módulos
+| Módulo | Descripción |
+| --- | --- |
+| App | Módulo general de la aplicación |
+| Shared | Módulo compartido que incluye referencias a [Angular Material](https://material.angular.io)  |
+| Auth | Implementa autenticación básica contra el *backend* |
+| Shows | Servicios y componentes que utilizan las estructuras de datos `Shows` y `Cast` del *backend*  |
