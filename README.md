@@ -38,15 +38,30 @@ Tras la instalación, tendrás:
 * *Frontend* - Aplicación Web Angular: http://localhost:4200
 
 # ¿Qué vamos a desarrollar?
-* Partiremos de un sistema que es capaz de procesar un *dataset* con información sobre NetFlix
-* La información procesada se almacenará en clases persistentes en IRIS
-* Expondremos la información almacenada en *JSON* a través de interfaces *REST* para poder consumirla desde una aplicación *Angular*
+* Partiremos de un sistema que es capaz de procesar un *dataset* con información sobre NetFlix.
+* La información procesada se almacenará en clases persistentes en IRIS.
+* Expondremos la información almacenada en *JSON* a través de interfaces *REST* para poder consumirla desde una aplicación *Angular*.
 * Desarrollaremos nuevas funcionalidades sobre la aplicación web.
 <img src="./img/iris-webapp-diagram.png" width=700>
 
 # Backend
-## Examinar *dataset* NetFlix
-* En IRIS tenemos creada una producción (*Interoperabilidad*) que se encarga de procesar un CSV con un *dataset* de Netflix.
-* Echa un vistazo a la producción y a los mensajes procesados
-http://localhost:52773/csp/myapp/EnsPortal.ProductionConfig.zen?PRODUCTION=App.Prod
+NOTA: utiliza el usuario y password por defecto *superuser* / *SYS*
 
+## Examinar *dataset* NetFlix
+* En IRIS tenemos creada una producción que se encarga de procesar un CSV con un *dataset* de Netflix.
+* Echa un vistazo a la producción y a los mensajes procesados en [Interoperability](http://localhost:52773/csp/myapp/EnsPortal.ProductionConfig.zen?PRODUCTION=App.Prod).
+
+## Explora los datos utilizando SQL / Objetos / JSON
+* Abre las clases `App.Data.Show` y `App.Data.Casting` utilizando VS Code. Estas clases utilizan `%JSON.Adaptor` para permitir exportar e importar información en formato JSON. En el artículo [Mejoras en Procesamiento JSON](https://es.community.intersystems.com/post/mejoras-en-procesamiento-json) tienes más información `%JSON.Adaptor` y como funciona.
+* Prueba a hacer un SELECT sobre la tabla `App_Data.Show` en el [SQL Explorer](http://localhost:52773/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=MYAPP)
+* Examina también a través de objetos la información cargada utilizando una sesión de [WebTerminal](http://localhost:52773/terminal/).
+```objectscript
+// abrir objeto Show
+set show = ##class(App.Data.Show).%OpenId(449931)
+// exportar a JSON
+do show.%JSONExport()
+```
+
+## Interfaces REST
+* Tenemos la información del *dataset* de Netflix almacenada y somos capaces de exportar / importar información desde nuestras clases persistentes utilizando `%JSON.Adaptor`.
+* ¿Cómo podemos consumir esa información en formato JSON desde una aplicación Angular? utilizaremos interfaces REST.
