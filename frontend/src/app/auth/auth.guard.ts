@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private _platformLocation: PlatformLocation, private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
     return this.checkLogin(state.url);
@@ -18,8 +18,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    let queryParams = this.router.parseUrl(this._platformLocation.search).queryParams;
-    this.router.navigate(['/auth/login'], { queryParams });
+    this.router.navigate(['/auth/login'], { queryParams: { returnUrl: url }});
     return false;
   }
   

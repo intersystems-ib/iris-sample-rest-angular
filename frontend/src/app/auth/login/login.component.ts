@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { tap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,18 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   loading: boolean;
+  returnUrl: string;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private authService: AuthService, 
   ) { }
 
   ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
     const formControls = {
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -34,7 +40,9 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(username, password).subscribe(
       data => { 
-        this.loading = false; 
+        this.loading = false;
+        // after login, redirect to returnUrl
+        this.router.navigateByUrl(this.returnUrl);
       },
       error => {
         this.loading = false;
