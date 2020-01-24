@@ -1,6 +1,7 @@
 # Desarrollo aplicación web Angular + InterSystems IRIS
 
 # ¿Qué necesitas?
+* [Git](https://git-scm.com/downloads) 
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 * [Visual Studio Code](https://code.visualstudio.com/download) + [InterSystems ObjectScript VSCode Extension](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript)
@@ -104,3 +105,6 @@ Nos centraremos en el módulo *Shows*, que incluye:
 | `cast-edit-dialog` | Componente que permite editar un `Cast` utilizando una ventana de diálogo |
 | `show-list` | Componente que muestra todos los `Show` en una tabla. Incluye paginación y búsqueda |
 
+Examina y prueba la [aplicación](http://localhost:4200).
+
+NOTA: es recomendable que tengas activadas las *Developer Tools* de Chrome o Safari.
