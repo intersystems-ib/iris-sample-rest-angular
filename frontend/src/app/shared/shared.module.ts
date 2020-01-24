@@ -14,7 +14,8 @@ import {
   MatProgressSpinnerModule,
   MatListModule,
   MatCardModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule
 } from '@angular/material';
 
 const mm = [ 
@@ -30,7 +31,8 @@ const mm = [
   MatProgressSpinnerModule,
   MatListModule,
   MatCardModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule,
 ]
 
 @NgModule({

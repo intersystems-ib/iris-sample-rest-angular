@@ -30,7 +30,9 @@ export class ShowsService {
 
   findLatestShows(): Observable<QueryResult<Show>> {
     return this.http.get<QueryResult<Show>>(
-      this.urlBase + '/objects/App.Data.Show/find?size=10&page=1&collation=UPPER&orderby=1+desc',
+      this.urlBase + 
+        '/objects/App.Data.Show/find?size=10&page=1&collation=UPPER&'+
+        'filter=showid%20in%2070136135~80057281~80114855~80025678~80211627~80175798',
       this.options
     ).pipe(
       //tap(data => console.log(data))
