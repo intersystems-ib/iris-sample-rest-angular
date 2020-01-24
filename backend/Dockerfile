@@ -7,6 +7,8 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /irissession.sh
 RUN chmod u+x /irissession.sh
 RUN mkdir -p /opt/myapp/db/DATA
 RUN mkdir -p /opt/myapp/db/CODE
+RUN mkdir -p /opt/myapp/data/input
+RUN mkdir -p /opt/myapp/data/archived
 RUN chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/myapp
 
 USER irisowner
@@ -16,6 +18,12 @@ WORKDIR /tmp
 RUN wget https://github.com/albertoft/RESTForms2/archive/master.tar.gz
 RUN tar -zxvf master.tar.gz
 WORKDIR /tmp/RESTForms2-master
+
+# copy dataset
+WORKDIR /opt/myapp/data
+COPY ./data/netflix.csv.gz .
+RUN gunzip netflix.csv.gz
+RUN cp netflix.csv input/
 
 # copy myapp source code
 WORKDIR /app

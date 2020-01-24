@@ -7,8 +7,8 @@ XData ProductionDefinition
   <Description></Description>
   <ActorPoolSize>2</ActorPoolSize>
   <Item Name="Netflix CSV File" Category="" ClassName="EnsLib.RecordMap.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Adapter" Name="ArchivePath">/app/data/archived</Setting>
-    <Setting Target="Adapter" Name="FilePath">/app/data/input</Setting>
+    <Setting Target="Adapter" Name="ArchivePath">/opt/myapp/data/archived</Setting>
+    <Setting Target="Adapter" Name="FilePath">/opt/myapp/data/input</Setting>
     <Setting Target="Adapter" Name="FileSpec">*.csv</Setting>
     <Setting Target="Host" Name="RecordMap">App.RecordMap.NetflixCSV</Setting>
     <Setting Target="Host" Name="TargetConfigNames">Record Router</Setting>
