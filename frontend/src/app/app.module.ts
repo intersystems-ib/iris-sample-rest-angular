@@ -21,7 +21,7 @@ import { AuthModule } from './auth/auth.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule,
+    SharedModule.forRoot(),
     AuthModule.forRoot()
   ],
   bootstrap: [AppComponent]

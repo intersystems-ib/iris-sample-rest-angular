@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../../shared/services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService, 
+    private authService: AuthService,
+    private alertService: AlertService, 
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        console.log('TODO: error on login');
+        this.alertService.error("[Login] Wrong username or password");
       }
     );
     
