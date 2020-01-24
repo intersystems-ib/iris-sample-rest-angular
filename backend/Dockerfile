@@ -29,6 +29,11 @@ RUN cp netflix.csv input/
 WORKDIR /app
 COPY src src
 
+# download zpm package manager
+RUN mkdir -p /tmp/deps \
+ && cd /tmp/deps \
+ && wget -q https://pm.community.intersystems.com/packages/zpm/latest/installer -O zpm.xml
+
 SHELL ["/irissession.sh"]
 RUN \
   # install RESTForms2
@@ -40,8 +45,11 @@ RUN \
   set vars("WebApp")="/myapp/api" \
   set vars("SourcePath")="/tmp/RESTForms2-master/src/" \
   set sc = ##class(Form.Installer).Run(.vars) \
-  # install MyApp
   zn "MYAPP" \
+  # install zpm
+  Do $system.OBJ.Load("/tmp/deps/zpm.xml", "ck") \
+  zpm "install webterminal" \
+  # install MyApp
   do $SYSTEM.OBJ.Load("/app/src/App/Installer.cls", "ck") \
   set sc = ##class(App.Installer).Run() \
   # iris config
