@@ -83,11 +83,24 @@ RESTForms2 ya está instalado en el contenedor *backend* de IRIS que estamos uti
 Utilizaremos esta API REST generada automáticamente como base para la comunicación entre el *frontend* y el *backend*.
 
 # Frontend
+El *frontend* es una aplicación *Angular 8* muy sencilla que consume las interfaces REST del *backend* de manera que permiter realizar operaciones sobre las estructuras de datos que hemos visto antes en IRIS.
 
-## Módulos
 | Módulo | Descripción |
 | --- | --- |
 | App | Módulo general de la aplicación |
 | Shared | Módulo compartido que incluye referencias a [Angular Material](https://material.angular.io)  |
 | Auth | Implementa autenticación básica contra el *backend* |
-| Shows | Servicios y componentes que utilizan las estructuras de datos `Shows` y `Cast` del *backend*  |
+| Shows | Servicios y componentes que utilizan las estructuras de datos `Show` y `Cast` del *backend*  |
+
+Nos centraremos en el módulo *Shows*, que incluye:
+
+| Elemento | Descripción |
+| --- | --- |
+| `shows.model` | Estructuras de datos `Show` y `Cast` que utilizaremos en la aplicación |
+| `shows.service` | Servicio que consume las interfaces REST *backend*. Los componentes utilizan este servicio   |
+| `show-latest` | Componente que muestra los `Shows` más reciente en formato tarjeta o *card*  |
+| `show-edit-dialog` | Componente que permite editar un `Show` utilizando un ventana de diálogo  |
+| `cast-list` | Componente que muestra en una tabla el casting `Cast` de un `Show` |
+| `cast-edit-dialog` | Componente que permite editar un `Cast` utilizando una ventana de diálogo |
+| `show-list` | Componente que muestra todos los `Show` en una tabla. Incluye paginación y búsqueda |
+
