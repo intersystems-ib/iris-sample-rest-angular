@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "d943650e-4456-4921-9ce2-7567fcd8117d",
+		"name": "MyApp Netflix DataSet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "form/info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/info",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{endpoint}}",
+						"form",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query - form/objects/App.Data.Show/find",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Rest.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/objects/App.Data.Show/find?size=10&page=1&collation=UPPER&orderby=1+desc",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{endpoint}}",
+						"form",
+						"objects",
+						"App.Data.Show",
+						"find"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "collation",
+							"value": "UPPER"
+						},
+						{
+							"key": "orderby",
+							"value": "1+desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query - form/objects/App.Data.Cast/find",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Rest.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/objects/App.Data.Cast/find?filter=show+eq+81227195",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{endpoint}}",
+						"form",
+						"objects",
+						"App.Data.Cast",
+						"find"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "show+eq+81227195"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read - form/object/App.Data.Show/:id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Rest.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/object/App.Data.Show/81227195",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{endpoint}}",
+						"form",
+						"object",
+						"App.Data.Show",
+						"81227195"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update - form/object/App.Data.Show/:id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Kalushi: The Story of Solomon Mahlangu - Modified\",\n    \"description\": \"The life and times of iconic South African liberation fighter Solomon Mahlangu, who battled the forces of apartheid, come into focus.\",\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/object/App.Data.Show/81227195",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{endpoint}}",
+						"form",
+						"object",
+						"App.Data.Show",
+						"81227195"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "SYS",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "superuser",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "71b1c1b3-9718-4f64-8c1a-2f4500a5bc4c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "96b38da2-d62c-46ab-9dc0-1e472dec3e6b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
