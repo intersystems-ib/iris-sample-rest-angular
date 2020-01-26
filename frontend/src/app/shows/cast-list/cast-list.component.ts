@@ -34,7 +34,9 @@ export class CastListComponent implements OnInit {
 
   loadData() {
     this.show$ = this.showsService.findShowById(this.showId).pipe();
-    this.casting$ = this.showsService.findCastByShow(this.showId).pipe();
+    this.casting$ = this.showsService.findCastByShow(this.showId).pipe(
+      map(res => res['children'])
+    );
   }
 
   editCast(cast: Cast) {
