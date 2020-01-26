@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import { map, tap, catchError } from "rxjs/operators";
 import { Show, Cast, QueryResult } from '../shows.model';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ShowsService {
   private urlBase = 'http://localhost:52773/myapp/api/form';
   private options = { withCredentials: true };
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private alertService: AlertService) { }
 
   findShows(pageIndex: number, pageSize: number, query: any): Observable<QueryResult<Show>> {
     let filter = '';
@@ -25,6 +26,10 @@ export class ShowsService {
       this.options
     ).pipe(
       //tap(data => console.log(data))
+      catchError(err => {
+        this.alertService.error('[findShows] ' + err.error.summary)
+        return throwError(err);
+      })
     );
   }
 
@@ -36,7 +41,11 @@ export class ShowsService {
       this.options
     ).pipe(
       //tap(data => console.log(data))
-    );
+      catchError(err => {
+        this.alertService.error('[findLatestShows] ' + err.error.summary)
+        return throwError(err);
+      })
+  );
   }
 
   findShowById(id: number): Observable<Show> {
@@ -45,16 +54,23 @@ export class ShowsService {
       this.options
     ).pipe(
       //tap(data => console.log(data)),
+      catchError(err => {
+        this.alertService.error('[findShowById] ' + err.error.summary)
+        return throwError(err);
+      })
     );
   }
 
-  findCastByShow(id: number): Observable<Cast[]> {
-    return this.http.get<Cast[]>(
+  findCastByShow(id: number): Observable<QueryResult<Cast>> {
+    return this.http.get<QueryResult<Cast>>(
       this.urlBase + `/objects/App.Data.Cast/find?filter=show+eq+${id}`,
       this.options
     ).pipe(
       //tap(data => console.log(data)),
-      map(res => res['children'])
+      catchError(err => {
+        this.alertService.error('[findCastByShow] ' + err.error.summary)
+        return throwError(err);
+      })
     );
   }
 
@@ -64,6 +80,10 @@ export class ShowsService {
       show,
       this.options
     ).pipe(
+      catchError(err => {
+        this.alertService.error('[saveShow] ' + err.error.summary)
+        return throwError(err);
+      })
     );
   }
 
@@ -73,6 +93,10 @@ export class ShowsService {
       cast,
       this.options
     ).pipe(
+      catchError(err => {
+        this.alertService.error('[saveCast] ' + err.error.summary)
+        return throwError(err);
+      })
     );
   }
 
