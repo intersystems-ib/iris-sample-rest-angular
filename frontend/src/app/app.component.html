@@ -2,6 +2,10 @@
 
   <mat-sidenav #sidenav>
     <mat-nav-list (click)="sidenav.close()">
+      <a mat-list-item routerLink="/about">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
       <a mat-list-item routerLink="/auth/login" *ngIf="!(isLoggedIn$ | async)">
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
@@ -33,6 +37,9 @@
   </div>
 
   <app-alert-display></app-alert-display>
-  <router-outlet></router-outlet>
-
+  
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+  
 </mat-sidenav-container>

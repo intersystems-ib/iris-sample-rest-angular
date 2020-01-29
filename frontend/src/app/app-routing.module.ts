@@ -6,8 +6,12 @@ import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
   { 
     path: '', 
-    redirectTo: 'shows/latest', 
+    redirectTo: 'about', 
     pathMatch: 'full' 
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
   },
   {
     path: 'auth',
