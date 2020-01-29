@@ -17,6 +17,8 @@ Property title As %String(MAXLEN = "");
 
 Property description As %String(MAXLEN = "");
 
+Property year As %Integer;
+
 Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, Inverse = show ];
 
 ClassMethod queryFIND() As %String
@@ -35,6 +37,9 @@ Storage Default
 </Value>
 <Value name="3">
 <Value>description</Value>
+</Value>
+<Value name="4">
+<Value>year</Value>
 </Value>
 </Data>
 <DataLocation>^App.Data.ShowD</DataLocation>

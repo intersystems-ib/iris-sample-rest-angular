@@ -17,6 +17,7 @@ Method CSVRecordToData(pRequest As App.RecordMap.NetflixCSV.Record, Output pResp
 
 		set show.title = pRequest.title
 		set show.description = pRequest.description
+		set show.year = pRequest.releaseyear
 
 		if $isobject(show.cast) {
 			$$$ThrowOnError(show.cast.Clear())
