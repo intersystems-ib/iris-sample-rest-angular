@@ -1,4 +1,6 @@
-# Desarrollo aplicación web Angular + InterSystems IRIS
+# Desarrollo aplicación Angular + InterSystems IRIS
+
+<img src="./img/iris-webapp.gif" width=700>
 
 # ¿Qué necesitas?
 * [Git](https://git-scm.com/downloads) 
@@ -32,7 +34,7 @@ $ ng serve       # ejecutar servidor web desarrollo
 ## Opción 2. Desarrollo Angular en contenedor
 Utiliza esta opción si no tienes instalado Node.js v12 en tu local
 ```bash
-# construi/ejecutar backend (IRIS) + frontend (Angular)
+# construir/ejecutar backend (IRIS) + frontend (Angular)
 $ docker-compose build
 $ docker-compose up
 ```
