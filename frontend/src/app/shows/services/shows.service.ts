@@ -27,7 +27,7 @@ export class ShowsService {
     ).pipe(
       //tap(data => console.log(data))
       catchError(err => {
-        this.alertService.error('[findShows] ' + err.error.summary)
+        this.alertService.error('[findShows] ' + err.message)
         return throwError(err);
       })
     );
@@ -42,7 +42,7 @@ export class ShowsService {
     ).pipe(
       //tap(data => console.log(data))
       catchError(err => {
-        this.alertService.error('[findLatestShows] ' + err.error.summary)
+        this.alertService.error('[findLatestShows] ' + err.message)
         return throwError(err);
       })
   );
@@ -55,7 +55,7 @@ export class ShowsService {
     ).pipe(
       //tap(data => console.log(data)),
       catchError(err => {
-        this.alertService.error('[findShowById] ' + err.error.summary)
+        this.alertService.error('[findShowById] ' + err.message)
         return throwError(err);
       })
     );
@@ -68,7 +68,7 @@ export class ShowsService {
     ).pipe(
       //tap(data => console.log(data)),
       catchError(err => {
-        this.alertService.error('[findCastByShow] ' + err.error.summary)
+        this.alertService.error('[findCastByShow] ' + err.message)
         return throwError(err);
       })
     );
@@ -81,7 +81,7 @@ export class ShowsService {
       this.options
     ).pipe(
       catchError(err => {
-        this.alertService.error('[saveShow] ' + err.error.summary)
+        this.alertService.error('[saveShow] ' + err.message)
         return throwError(err);
       })
     );
@@ -94,7 +94,7 @@ export class ShowsService {
       this.options
     ).pipe(
       catchError(err => {
-        this.alertService.error('[saveCast] ' + err.error.summary)
+        this.alertService.error('[saveCast] ' + err.message)
         return throwError(err);
       })
     );
