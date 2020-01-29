@@ -1,5 +1,7 @@
 # Desarrollo aplicación web Angular + InterSystems IRIS
 
+<img src="./img/iris-webapp.gif" width=700>
+
 # ¿Qué necesitas?
 * [Git](https://git-scm.com/downloads) 
 * [Docker](https://www.docker.com/products/docker-desktop)
