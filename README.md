@@ -20,6 +20,7 @@ $ git clone https://github.com/intersystems-ib
 Necesitarás tener instalado [Node.js v12](https://nodejs.org/es/download/) en tu local
 ```bash
 # construir/ejecutar backend (IRIS)
+$ docker-compose build backend
 $ docker-compose up backend
 
 # ejecutar frontend (Angular) en local
@@ -31,7 +32,8 @@ $ ng serve       # ejecutar servidor web desarrollo
 ## Opción 2. Desarrollo Angular en contenedor
 Utiliza esta opción si no tienes instalado Node.js v12 en tu local
 ```bash
-# construir/ejecutar backend (IRIS) + frontend (Angular)
+# construi/ejecutar backend (IRIS) + frontend (Angular)
+$ docker-compose build
 $ docker-compose up
 ```
 
