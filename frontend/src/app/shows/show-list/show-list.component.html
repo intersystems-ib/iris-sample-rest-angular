@@ -3,6 +3,16 @@
   <p class="h2">All Shows</p>
 
   <mat-table class="show-table mat-elevation-z8" [dataSource]="shows$ | async">
+    
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let show">
+        <button mat-icon-button [routerLink]="['/shows/' + show.id + '/cast']" matTooltip="Casting">
+          <mat-icon>people_alt</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
       <mat-cell *matCellDef="let show">{{ show.id }}</mat-cell>
