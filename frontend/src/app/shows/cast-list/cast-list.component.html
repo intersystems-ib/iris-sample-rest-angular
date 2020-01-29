@@ -1,14 +1,17 @@
-<div class="show" *ngIf="(show$ | async) as show">
+<div class="container">
 
-    <h2>{{show?.title}}</h2>
-    <h3>Casting</h3>
-    
+  <div class="show" *ngIf="(show$ | async) as show">
+
+    <p class="h2">{{show?.title}}
+      <small class="text-muted">| Casting</small>
+    </p>
+
     <div class="spinner-container" *ngIf="(loading$ | async )">
       <mat-spinner></mat-spinner>
     </div>
-  
+
     <mat-table class="casting-table mat-elevation-z8" [dataSource]="casting$ | async">
-      
+
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let cast">
@@ -22,20 +25,20 @@
         <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
         <mat-cell *matCellDef="let cast">{{ cast.id }}</mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
         <mat-cell *matCellDef="let cast">{{ cast.name }}</mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="actingRole">
         <mat-header-cell *matHeaderCellDef>Acting Role</mat-header-cell>
         <mat-cell *matCellDef="let cast">{{ cast.actingRole }}</mat-cell>
       </ng-container>
-  
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
 
   </div>
-  
+</div>
