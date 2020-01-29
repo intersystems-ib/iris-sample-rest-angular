@@ -46,7 +46,7 @@ Tras la instalación, tendrás:
 * La información procesada se almacenará en clases persistentes en IRIS.
 * Expondremos la información almacenada en *JSON* a través de interfaces *REST* para poder consumirla desde una aplicación *Angular*.
 * Desarrollaremos nuevas funcionalidades sobre la aplicación web.
-<img src="./img/iris-webapp-diagram.png" width=700>
+<img src="./frontend/src/assets/img/iris-webapp-diagram.png" width=700>
 
 # Backend
 NOTA: utiliza el usuario y password por defecto *superuser* / *SYS*
