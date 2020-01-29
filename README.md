@@ -1,4 +1,4 @@
-# Desarrollo aplicación web Angular + InterSystems IRIS
+# Desarrollo aplicación Angular + InterSystems IRIS
 
 <img src="./img/iris-webapp.gif" width=700>
 
