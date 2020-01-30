@@ -92,7 +92,6 @@ El *frontend* es una aplicación *Angular 8* muy sencilla que consume las interf
 | --- | --- |
 | App | Módulo general de la aplicación |
 | About | Contiene el componente *about* que se usa como página inicial (*home*) de la aplicación |
-| App | Módulo general de la aplicación |
 | Shared | Módulo compartido que incluye referencias a [Angular Material](https://material.angular.io)  |
 | Auth | Implementa autenticación básica contra el *backend* |
 | Shows | Servicios y componentes que utilizan las estructuras de datos `Show` y `Cast` del *backend*  |
