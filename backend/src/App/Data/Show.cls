@@ -17,7 +17,7 @@ Property title As %String(MAXLEN = "");
 
 Property description As %String(MAXLEN = "");
 
-Property year As %Integer;
+Property year As %String;
 
 Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, Inverse = show ];
 
