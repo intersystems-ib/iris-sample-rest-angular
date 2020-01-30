@@ -17,13 +17,13 @@ Property title As %String(MAXLEN = "");
 
 Property description As %String(MAXLEN = "");
 
-Property year As %String;
+Property year As %Integer;
 
 Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, Inverse = show ];
 
 ClassMethod queryFIND() As %String
 {
-  quit "showid id, title, year, description "
+  quit "showid id, title, description "
 }
 
 Storage Default

@@ -2,7 +2,6 @@ export interface Show {
     id: number;
     name: string;
     description: string;
-    year: string;
 }
 
 export interface Cast {

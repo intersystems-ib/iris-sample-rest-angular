@@ -14,7 +14,7 @@ export class ShowListComponent implements AfterViewInit {
 
   shows$: Observable<Show[]>;
   totalResults: number = 0;
-  displayedColumns = ['actions', 'title', 'year', 'description'];
+  displayedColumns = ['actions', 'id', 'title', 'description'];
   filters: any = {};
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
