@@ -127,9 +127,9 @@ git branch exercises-solved
 Añadir un botón que nos permita acceder al casting de cualquier show de los que aparecen en la tabla de `show-list`.
 El componente `show-latest` ya tiene ese comportamiento. Se trata de replicarlo en la tabla de `show-list`. 
 
-* Añadir una nueva definición de columna en `show-list`. La llamaremos `actions` y la utilizaremos para colocar las acciones que queramos hacer sobre una fila de la tabla. Incluiremos un botón para navegar hacia el componente `cast-list` utilizando el identificador del `Show`.
+Añadir una nueva definición de columna en `show-list`. La llamaremos `actions` y la utilizaremos para colocar las acciones que queramos hacer sobre una fila de la tabla. Incluiremos un botón para navegar hacia el componente `cast-list` utilizando el identificador del `Show`.
 
-*frontend/src/app/shows/show-list/show-list.component.html*
+> frontend/src/app/shows/show-list/show-list.component.html
 ```javascript
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -143,7 +143,7 @@ El componente `show-latest` ya tiene ese comportamiento. Se trata de replicarlo 
 
 * La propiedad `displayedColumns` de `show-list` se utiliza para indicar al componente [mat-table](https://material.angular.io/components/table/overview) las columnas que debe mostrar. Tenemos que incluir aquí nuestra nueva columna `actions`.
 
-*frontend/src/app/shows/show-list/show-list.component.ts*
+> frontend/src/app/shows/show-list/show-list.component.ts
 ```javascript
 displayedColumns = ['actions', 'id', 'title', 'description'];
 ```
@@ -154,7 +154,7 @@ El *backend* (IRIS) ya tiene incluido `year` como una propiedad de `App.Data.Sho
 
 * Comenzamos por añadir añadir la propiedad `year` al modelo de datos que utilizamos en Angular
 
-*frontend/src/app/shows/shows.model.ts*
+> frontend/src/app/shows/shows.model.ts
 ```javacript
 export interface Show {
     id: number;
@@ -164,9 +164,9 @@ export interface Show {
 }
 ```
 
-* Modificaremos también la query `find` que estamos utilizando en el IRIS (a través de la API automática de RESTForms2) para incluir la propiedad `year`
+* Modificaremos también la query `App.Data.Show:queryFIND` que estamos utilizando en el IRIS (a través de la API automática de RESTForms2) para incluir la propiedad `year`
 
-*backend/src/App/Data/Show.cls*
+> backend/src/App/Data/Show.cls
 ```objectscript
 ClassMethod queryFIND() As %String
 {
@@ -176,7 +176,7 @@ ClassMethod queryFIND() As %String
 
 * Ahora ya podemos mostrar `year` en el componente `show-latest`
 
-*frontend/src/app/shows/show-latest/show-latest.component.html*
+> frontend/src/app/shows/show-latest/show-latest.component.html
 ```javascript
    <mat-card-header>
       <mat-card-title>{{show.title}} <small>{{ show.year }}</small></mat-card-title>
@@ -185,7 +185,7 @@ ClassMethod queryFIND() As %String
 
 * Vamos a permitir que se pueda modificar el campo `year` igualmente en `show-edit-dialog`
 
-*frontend/src/app/shows/show-edit-dialog/show-edit-dialog.component.ts*
+> frontend/src/app/shows/show-edit-dialog/show-edit-dialog.component.ts
 ```javascript
     const formControls = {
       title: ['', Validators.required],
@@ -194,7 +194,7 @@ ClassMethod queryFIND() As %String
     };
 ```
 
-*frontend/src/app/shows/show-edit-dialog/show-edit-dialog.component.html*
+> frontend/src/app/shows/show-edit-dialog/show-edit-dialog.component.html
 ```javascript
    <mat-form-field>
      <textarea matInput placeholder="Year" formControlName="year">
@@ -202,5 +202,19 @@ ClassMethod queryFIND() As %String
    </mat-form-field>
 ```
 
-* Muestra la columna `year` en la tabla de `show-list`. Tendrás que añadir dicha columna también en el método `App.Data.Show:queryfind` en el *backend*.
-* Habilita la búsqueda a través de la columna `year`en `show-list`.
+* También mostraremos `year` como una columna en `show-list` y ocultaremos la columna `id` ya que es un identificador interno. Para ello igual que antes vamos a crear una nueva definición de columna llamada `year`.
+
+> frontend/src/app/shows/show-list/show-list.component.html
+```javascript
+    <ng-container matColumnDef="year">
+      <mat-header-cell *matHeaderCellDef>Year</mat-header-cell>
+      <mat-cell *matCellDef="let show">{{ show.year }}</mat-cell>
+    </ng-container>
+```
+
+* Cambiaremos la definición de las columnas que se muestran en el componente:
+
+> frontend/src/app/shows/show-list/show-list.component.ts
+```javascript
+displayedColumns = ['actions', 'title', 'year', 'description'];
+```
