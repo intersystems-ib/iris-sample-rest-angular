@@ -15,7 +15,7 @@ Además, si quieres desarrollar la aplicación Angular directamente desde tu loc
 # Instalación
 ## Descargar código
 ```console
-$ git clone https://github.com/intersystems-ib
+$ git clone https://github.com/intersystems-ib/iris-dev-webapp.git
 ```
 
 ## Opción 1. Desarrollo Angular en local
