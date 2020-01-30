@@ -23,7 +23,7 @@ Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, 
 
 ClassMethod queryFIND() As %String
 {
-  quit "showid id, title, description "
+  quit "showid id, title, year, description "
 }
 
 Storage Default
