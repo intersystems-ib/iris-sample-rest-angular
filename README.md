@@ -11,7 +11,8 @@
 
 # Instalación
 ```bash
-$ git clone https://github.com/intersystems-ib/iris-dev-webapp.git
+$ git clone https://github.com/intersystems-ib/iris-dev-webapp
+$ cd iris-dev-webapp
 $ docker-compose up
 ```
 
