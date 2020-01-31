@@ -10,7 +10,7 @@
 * [Postman](https://www.getpostman.com/downloads/)
 
 # Instalación
-```bash
+```console
 $ git clone https://github.com/intersystems-ib/iris-dev-webapp
 $ cd iris-dev-webapp
 $ docker-compose up
