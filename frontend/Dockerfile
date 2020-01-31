@@ -4,7 +4,7 @@ FROM node:12.14.1-alpine
 # install dependencies
 USER node
 WORKDIR /app
-COPY package.json /app
+COPY package*.json /app/
 USER root
 RUN npm install
 
