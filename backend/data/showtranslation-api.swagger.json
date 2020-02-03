@@ -6,7 +6,7 @@
     "title" : "Show Translation"
   },
   "paths" : {
-    "/inventory/{showId}" : {
+    "/show/{showId}" : {
       "get" : {
         "summary" : "translate a Show description",
         "operationId" : "translateShow",
@@ -61,7 +61,7 @@
       }
     }
   },
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/alberto.ft/show-translate/1.0.0",
-  "schemes" : [ "https", "http" ]
+  "host" : "localhost:52773",
+  "basePath" : "/myapp/api/translation",
+  "schemes" : [ "http" ]
 }
