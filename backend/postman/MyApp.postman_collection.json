@@ -1,17 +1,36 @@
 {
 	"info": {
-		"_postman_id": "d943650e-4456-4921-9ce2-7567fcd8117d",
+		"_postman_id": "b5eec170-90b9-4b3d-86a9-b6645ee9101d",
 		"name": "MyApp Netflix DataSet",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "form/info",
+			"name": "read - form/object/App.Data.Show/:id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Rest.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/info",
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/object/App.Data.Show/449931",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -20,7 +39,9 @@
 					"path": [
 						"{{endpoint}}",
 						"form",
-						"info"
+						"object",
+						"App.Data.Show",
+						"449931"
 					]
 				}
 			},
@@ -51,7 +72,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/objects/App.Data.Show/find?size=10&page=1&collation=UPPER&orderby=1+desc",
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/objects/App.Data.Show/find?filter=title+contains+blind&page=1&size=10&collation=UPPER&orderby=1+desc",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -66,12 +87,16 @@
 					],
 					"query": [
 						{
-							"key": "size",
-							"value": "10"
+							"key": "filter",
+							"value": "title+contains+blind"
 						},
 						{
 							"key": "page",
 							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
 						},
 						{
 							"key": "collation",
@@ -82,7 +107,8 @@
 							"value": "1+desc"
 						}
 					]
-				}
+				},
+				"description": "This query uses **`App.Data.Show:queryFIND()`** *classmethod* in IRIS.\n\n```\nClassMethod queryFIND() As %String\n{\n  quit \"showid id, title, description \"\n}\n```"
 			},
 			"response": []
 		},
@@ -111,7 +137,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/objects/App.Data.Cast/find?filter=show+eq+81227195",
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/objects/App.Data.Cast/find?filter=show+eq+449931&orderby=2+desc",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -127,15 +153,20 @@
 					"query": [
 						{
 							"key": "filter",
-							"value": "show+eq+81227195"
+							"value": "show+eq+449931"
+						},
+						{
+							"key": "orderby",
+							"value": "2+desc"
 						}
 					]
-				}
+				},
+				"description": "This query uses **`App.Data.Cast:queryFIND()`** *classmethod* in IRIS.\n\n```\nClassMethod queryFIND() As %String\n{\n  quit \"id, name, actingRole \"\n}\n```"
 			},
 			"response": []
 		},
 		{
-			"name": "read - form/object/App.Data.Show/:id",
+			"name": "read - form/object/App.Data.Cast/:id",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -159,7 +190,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/object/App.Data.Show/81227195",
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/object/App.Data.Cast/1733",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -169,8 +200,8 @@
 						"{{endpoint}}",
 						"form",
 						"object",
-						"App.Data.Show",
-						"81227195"
+						"App.Data.Cast",
+						"1733"
 					]
 				}
 			},
@@ -190,7 +221,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Kalushi: The Story of Solomon Mahlangu - Modified\",\n    \"description\": \"The life and times of iconic South African liberation fighter Solomon Mahlangu, who battled the forces of apartheid, come into focus.\",\n}",
+					"raw": "{\n    \"id\": 449931,\n    \"title\": \"Doctor Zhivago - Modified!\",\n    \"description\": \"A young physician and his beautiful mistress get swept up in the danger and drama of the Bolshevik Revolution in this Oscar-winning epic.\",\n\t\"year\": \"1965 - 1966\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,7 +229,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/object/App.Data.Show/81227195",
+					"raw": "http://{{host}}:{{port}}/{{endpoint}}/form/object/App.Data.Show/449931",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -209,7 +240,7 @@
 						"form",
 						"object",
 						"App.Data.Show",
-						"81227195"
+						"449931"
 					]
 				}
 			},
@@ -251,6 +282,26 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"id": "cf5d0157-4a49-491d-a3f8-dd1be66c25a9",
+			"key": "host",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "49cd13e7-fda4-4f9a-b86c-9e7ebe461724",
+			"key": "port",
+			"value": "52773",
+			"type": "string"
+		},
+		{
+			"id": "0e71c1be-ff6b-4f27-8f6e-a6e17c40bb21",
+			"key": "endpoint",
+			"value": "myapp/api",
+			"type": "string"
 		}
 	],
 	"protocolProfileBehavior": {}
