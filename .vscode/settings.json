@@ -4,5 +4,6 @@
     "objectscript.conn.password": "SYS",
     "objectscript.export.folder": "backend/src",
     "objectscript.conn.active": true,
-    "objectscript.conn.ns": "MYAPP"
+    "objectscript.conn.ns": "MYAPP",
+    "typescript.validate.enable": false
 }

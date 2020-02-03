@@ -12,9 +12,15 @@ export class AlertDisplayComponent implements OnInit, OnDestroy {
 
   @Input() id: string;
 
+  /** Alerts to display */
   alerts: Alert[] = [];
+
   subscription: Subscription;
 
+  /**
+   * Constructor
+   * @param alertService 
+   */
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {

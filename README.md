@@ -70,6 +70,7 @@ El *frontend* es una aplicación *Angular 8* muy sencilla que consume las interf
 | Módulo | Descripción |
 | --- | --- |
 | App | Módulo general de la aplicación |
+| AppRouting | Módulo encargado de gestionar las rutas (URLs) utilizadas en la aplicación |
 | About | Contiene el componente *about* que se usa como página inicial (*home*) de la aplicación |
 | Shared | Módulo compartido que incluye referencias a [Angular Material](https://material.angular.io)  |
 | Auth | Implementa autenticación básica contra el *backend* |
@@ -123,7 +124,7 @@ La propiedad `displayedColumns` de `show-list` se utiliza para indicar al compon
 
 > frontend/src/app/shows/show-list/show-list.component.ts
 ```javascript
-displayedColumns = ['actions', 'id', 'title', 'description'];
+displayedColumns = ['actions', 'title', 'description'];
 ```
 
 
