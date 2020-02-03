@@ -1,3 +1,5 @@
+/// 
+/// Show
 Class App.Data.Show Extends (%Persistent, Form.Adaptor)
 {
 
@@ -9,18 +11,25 @@ Parameter DISPLAYPROPERTY As %String = "title";
 
 Parameter FORMORDERBY As %String = "title";
 
+/// showid - it is renamed to "id" when exported/imported from JSON
 Property showid As %Integer(%JSONFIELDNAME = "id", %JSONINCLUDE = "OUTPUTONLY");
+
+/// title of the show
+Property title As %String(MAXLEN = "");
+
+/// description
+Property description As %String(MAXLEN = "");
+
+/// year (we use %String datatype to allow expressions like "2013 - 2014")
+Property year As %String;
+
+/// casting of the show (one to many)
+Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, Inverse = show ];
 
 Index showidIdx On showid [ IdKey, PrimaryKey, Unique ];
 
-Property title As %String(MAXLEN = "");
-
-Property description As %String(MAXLEN = "");
-
-Property year As %String;
-
-Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, Inverse = show ];
-
+/// 
+/// This classmethod is used in the RESTForms2 query /form/objects/App.Data.Show/find
 ClassMethod queryFIND() As %String
 {
   quit "showid id, title, description "

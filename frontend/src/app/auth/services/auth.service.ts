@@ -4,18 +4,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, ReplaySubject, Observable, throwError } from 'rxjs';
 import { map, distinctUntilChanged, tap, catchError } from 'rxjs/operators';
 
+/**
+ * Authentication Service
+ */
 @Injectable()
 export class AuthService {
-client_id = 'client';
-  client_secret = 'secret';
+  
+  /** Backend API used to login. We can use any URL that will enforce an IRIS Basic Auth */
   authApiUrl: string = 'http://localhost:52773/myapp/api/form/info';
+
+  /** isLoginSubject is used to know if the user is logged in or not */
   isLoginSubject = new BehaviorSubject<boolean>(this.authenticated());
 
+  /** private user token */
   private _token: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
+  /** 
+   * Constructor 
+   */
   constructor(private http: HttpClient, private router: Router) {
     document.execCommand('ClearAuthenticationCache', false);
-
     this._token
       .asObservable()
       .subscribe(
@@ -26,6 +34,11 @@ client_id = 'client';
       );
   }
 
+  /**
+   * Login into the app (implements Basic HTTP auth with IRIS backend)
+   * @param username 
+   * @param password 
+   */
   public login(username: string, password: string): Observable<string> {
     let basicheader = btoa(encodeURI(username+":"+password));
     let headers = new HttpHeaders();
@@ -53,14 +66,19 @@ client_id = 'client';
       );
   }
 
+  /**
+   * Logout
+   */
   public logout(): void {
     localStorage.removeItem('currentUser');
     setTimeout(() => {
       this.isLoginSubject.next(false);
     });
-    //this.router.navigate(['/shows/latest']);
   }
 
+  /**
+   * Returns true if user is authenticated
+   */
   public authenticated(): boolean {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const token = currentUser && currentUser.token;
@@ -73,12 +91,18 @@ client_id = 'client';
     return false;
   }
 
+  /**
+   * Returns stored user token (if any)
+   */
   getToken(): string {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const token = currentUser && currentUser.token;
     return token;
   }
 
+  /**
+   * Returns an Observable that can be used across the application to know if the user is logged in
+   */
   isLoggedIn(): Observable<boolean> {
     return this.isLoginSubject.asObservable();
   }

@@ -6,11 +6,26 @@ import { AuthService } from './services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private isRefreshingToken = false;
-  tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-
+  
+  /**
+   * Constructor
+   * @param authService 
+   */
   constructor(private authService: AuthService) {}
 
+  /**
+   * Intercepts a requests before sending it to the server
+   * @param req 
+   * @param next 
+   */
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(this.setHeaders(req));
+  }
+
+  /**
+   * Include authorization headers in the request
+   * @param req
+   */
   setHeaders(req: HttpRequest<any>) {
     if (!req.headers.has('Authorization')) {        
       req = req.clone({
@@ -20,7 +35,5 @@ export class AuthInterceptor implements HttpInterceptor {
     return req;
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(this.setHeaders(req));
-  }
+
 }

@@ -4,6 +4,9 @@ import { Show } from '../shows.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ShowsService } from '../services/shows.service';
 
+/**
+ * Edit a show (using a dialog)
+ */
 @Component({
   selector: 'app-show-edit-dialog',
   templateUrl: './show-edit-dialog.component.html',
@@ -16,6 +19,13 @@ export class ShowEditDialogComponent {
   dialogTitle: string;
   mode: 'create' | 'update';
 
+  /**
+   * Constructor
+   * @param fb 
+   * @param dialogRef 
+   * @param data 
+   * @param showsService 
+   */
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ShowEditDialogComponent>,
@@ -23,15 +33,18 @@ export class ShowEditDialogComponent {
     private showsService: ShowsService
   ) 
   { 
+    // set properties
     this.dialogTitle = data.dialogTitle;
     this.show = data.show;
     this.mode = data.mode;
 
+    // form controls
     const formControls = {
       title: ['', Validators.required],
       description: ['', Validators.required]
     };
 
+    // update data
     if (this.mode == 'update') {
       this.form = this.fb.group(formControls);
       this.form.patchValue({...data.show});
@@ -43,10 +56,16 @@ export class ShowEditDialogComponent {
     }
   }
 
+  /**
+   * Close dialog
+   */
   onClose() {
     this.dialogRef.close();
   }
 
+  /**
+   * Save data
+   */
   onSave() {
     const show: Show = {
       ...this.show,

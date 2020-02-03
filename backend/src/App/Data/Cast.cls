@@ -1,3 +1,5 @@
+/// 
+/// Cast of a Show
 Class App.Data.Cast Extends (%Persistent, Form.Adaptor)
 {
 
@@ -9,16 +11,22 @@ Parameter DISPLAYPROPERTY As %String = "name";
 
 Parameter FORMORDERBY As %String = "name";
 
+/// id of the cast (internal). Calculated using internal %Id()
 Property id As %Integer(%JSONINCLUDE = "OUTPUTONLY") [ Calculated, SqlComputeCode = { set {*}={%%ID}}, SqlComputed ];
 
+/// name of the cast
 Property name As %String(MAXLEN = "");
 
+/// actingRole (this property is not included in the DataSet)
 Property actingRole As %String(MAXLEN = "");
 
+/// show where the cast has appeared 
 Relationship show As App.Data.Show(%JSONINCLUDE = "INOUT", %JSONREFERENCE = "ID") [ Cardinality = one, Inverse = cast ];
 
 Index showIndex On show;
 
+/// 
+/// This classmethod is used in the RESTForms2 query /form/objects/App.Data.Cast/find
 ClassMethod queryFIND() As %String
 {
   quit "id, name, actingRole "

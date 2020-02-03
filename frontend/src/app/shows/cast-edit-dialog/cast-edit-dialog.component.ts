@@ -5,6 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ShowEditDialogComponent } from '../show-edit-dialog/show-edit-dialog.component';
 import { ShowsService } from '../services/shows.service';
 
+/**
+ * Edit a cast (dialog)
+ */
 @Component({
   selector: 'app-cast-edit-dialog',
   templateUrl: './cast-edit-dialog.component.html',
@@ -17,6 +20,13 @@ export class CastEditDialogComponent {
   dialogTitle: string;
   mode: 'create' | 'update';
 
+  /**
+   * Constructor
+   * @param fb 
+   * @param dialogRef 
+   * @param data 
+   * @param showsService 
+   */
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ShowEditDialogComponent>,
@@ -24,15 +34,18 @@ export class CastEditDialogComponent {
     private showsService: ShowsService    
   ) 
   { 
+    // set properties
     this.dialogTitle = data.dialogTitle;
     this.cast = data.cast;
     this.mode = data.mode;
 
+    // form controls
     const formControls = {
       name: ['', Validators.required],
       actingRole: ['', Validators.required]
     };
 
+    // update data
     if (this.mode == 'update') {
       this.form = this.fb.group(formControls);
       this.form.patchValue({...data.cast});
@@ -44,10 +57,16 @@ export class CastEditDialogComponent {
     }
   }
 
+  /**
+   * Close dialog
+   */
   onClose() {
     this.dialogRef.close();
   }
 
+  /**
+   * Save data
+   */
   onSave() {
     const cast: Cast = {
       ...this.cast,
