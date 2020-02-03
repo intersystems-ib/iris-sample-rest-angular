@@ -20,9 +20,9 @@ export class ShowListComponent implements AfterViewInit {
 
   /** total results of the query sent to the server */
   totalResults: number = 0;
-
+  
   /** columns that will be displayed */
-  displayedColumns = ['id', 'title', 'description'];
+  displayedColumns = ['actions', 'title', 'year', 'description'];
 
   /** filters that are using to query the server */
   filters: any = {};

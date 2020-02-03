@@ -41,7 +41,8 @@ export class ShowEditDialogComponent {
     // form controls
     const formControls = {
       title: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      year: ['', Validators.required]
     };
 
     // update data

@@ -32,7 +32,7 @@ Index showidIdx On showid [ IdKey, PrimaryKey, Unique ];
 /// This classmethod is used in the RESTForms2 query /form/objects/App.Data.Show/find
 ClassMethod queryFIND() As %String
 {
-  quit "showid id, title, description "
+  quit "showid id, title, year, description "
 }
 
 Storage Default

@@ -124,7 +124,7 @@ La propiedad `displayedColumns` de `show-list` se utiliza para indicar al compon
 
 > frontend/src/app/shows/show-list/show-list.component.ts
 ```javascript
-displayedColumns = ['actions', 'id', 'title', 'description'];
+displayedColumns = ['actions', 'title', 'description'];
 ```
 
 
