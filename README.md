@@ -12,7 +12,7 @@ La sesión está orientada hacia todos aquellos interesados en *cómo desarrolla
 <img src="./img/iris-webapp.gif" width=500>
 
 # ¿Qué necesitas instalar?
-Para poder seguir la sesión con tu propio portáil necesitas instalar: 
+Para poder seguir la sesión con tu propio portátil necesitas instalar: 
 * [Git](https://git-scm.com/downloads) 
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Docker Compose](https://docs.docker.com/compose/install/)
