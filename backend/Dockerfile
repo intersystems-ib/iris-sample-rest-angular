@@ -28,6 +28,7 @@ RUN cp netflix.csv input/
 # copy myapp source code
 WORKDIR /app
 COPY src src
+COPY data data
 
 # download zpm package manager
 RUN mkdir -p /tmp/deps \
@@ -42,7 +43,7 @@ RUN \
   set vars("CreateNamespace")="yes" \
   set vars("DataDBPath")="/opt/myapp/db/DATA" \
   set vars("CodeDBPath")="/opt/myapp/db/CODE" \
-  set vars("WebApp")="/myapp/api" \
+  set vars("WebApp")="/myapp/api/rf2" \
   set vars("SourcePath")="/tmp/RESTForms2-master/src/" \
   set sc = ##class(Form.Installer).Run(.vars) \
   zn "MYAPP" \

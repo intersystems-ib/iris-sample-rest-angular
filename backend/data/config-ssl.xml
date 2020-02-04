@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SSLConfigsExport>
+  <SSLConfigs>
+    <CipherList>ALL:!aNULL:!eNULL:!EXP:!SSLv2</CipherList>
+    <Enabled>true</Enabled>
+    <Name>SSL</Name>
+    <PrivateKeyType>2</PrivateKeyType>
+    <Protocols>24</Protocols>
+    <Type>false</Type>
+    <VerifyDepth>9</VerifyDepth>
+    <VerifyPeer>0</VerifyPeer>
+  </SSLConfigs>
+</SSLConfigsExport>
