@@ -11,7 +11,17 @@ XData Install [ XMLNamespace = INSTALLER ]
     <Namespace Name="${Namespace}" Create="yes" Ensemble="">
         <Import File="${SourcePath}" Recurse="1" Flags="cuk" />
         <Production Name="App.Prod" AutoStart="1"/>
-    </Namespace> 
+        <!-- dummy GCP credentials -->
+        <Invoke Class="%SYSTEM.OBJ" Method="Load" CheckStatus="true">
+            <Arg Value="/app/data/config-cred.xml"/>
+        </Invoke>
+    </Namespace>
+    <Namespace Name="%SYS" Create="no">
+        <!-- basic SSL config -->
+        <Invoke Class="Security.SSLConfigs" Method="Import" CheckStatus="true">
+            <Arg Value="/app/data/config-ssl.xml"/>
+        </Invoke>
+    </Namespace>
 </Manifest>
 }
 
@@ -40,12 +50,34 @@ ClassMethod Run(ByRef vars) As %Status
             do $SYSTEM.Process.Terminate($JOB,1)
         }
 
+        // endpoint for translation-demo branch
+        $$$ThrowOnError(..CreateWebApp(..#Namespace, "/myapp/api/translation", "App.API.ShowTranslation.disp"))
+
     } catch ex { 
         set sc = ex.AsStatus() 
         write $System.Status.GetErrorText(sc),! 
         do $SYSTEM.Process.Terminate($JOB,1) 
     } 
     quit sc
+}
+
+/// Create web application
+ClassMethod CreateWebApp(pNamespace As %String, pWebApp As %String, pDispatch As %String) As %Status
+{
+  set ret = $$$OK
+  try {
+    zn "%SYS" 
+    set webName = pWebApp 
+    set webProperties("DispatchClass") = pDispatch 
+    set webProperties("NameSpace") = pNamespace 
+    set webProperties("Enabled") = 1 
+    set webProperties("AutheEnabled") = 32 
+    $$$ThrowOnError(##class(Security.Applications).Create(webName, .webProperties))
+
+  } catch ex {
+    set ret = ex.AsStatus()
+  } 
+  quit ret
 }
 
 }

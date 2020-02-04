@@ -11,7 +11,7 @@ import { map, distinctUntilChanged, tap, catchError } from 'rxjs/operators';
 export class AuthService {
   
   /** Backend API used to login. We can use any URL that will enforce an IRIS Basic Auth */
-  authApiUrl: string = 'http://localhost:52773/myapp/api/form/info';
+  authApiUrl: string = 'http://localhost:52773/myapp/api/rf2/form/info';
 
   /** isLoginSubject is used to know if the user is logged in or not */
   isLoginSubject = new BehaviorSubject<boolean>(this.authenticated());
