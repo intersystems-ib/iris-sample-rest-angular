@@ -11,7 +11,7 @@ La sesión está orientada hacia todos aquellos interesados en *cómo desarrolla
 
 <img src="./img/iris-webapp.gif" width=500>
 
-# ¡Prepárate para la sesión!
+# ¿Qué necesitas instalar?
 Para poder seguir la sesión con tu propio portáil necesitas instalar: 
 * [Git](https://git-scm.com/downloads) 
 * [Docker](https://www.docker.com/products/docker-desktop)
