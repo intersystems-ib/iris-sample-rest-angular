@@ -286,21 +286,21 @@
 	],
 	"variable": [
 		{
-			"id": "cf5d0157-4a49-491d-a3f8-dd1be66c25a9",
+			"id": "24f49032-2815-4dc0-98a9-537b0fcc01a4",
 			"key": "host",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "49cd13e7-fda4-4f9a-b86c-9e7ebe461724",
+			"id": "99849178-aa13-4003-b5f0-7d65e971d7fa",
 			"key": "port",
 			"value": "52773",
 			"type": "string"
 		},
 		{
-			"id": "0e71c1be-ff6b-4f27-8f6e-a6e17c40bb21",
+			"id": "f2a3ae70-f2cc-4397-ba47-7e0a76e78b63",
 			"key": "endpoint",
-			"value": "myapp/api",
+			"value": "myapp/api/rf2",
 			"type": "string"
 		}
 	],
