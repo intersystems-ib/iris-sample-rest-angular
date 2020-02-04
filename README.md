@@ -19,7 +19,7 @@ Para poder seguir la sesión con tu propio portáil necesitas instalar:
 * [Visual Studio Code](https://code.visualstudio.com/download) + [InterSystems ObjectScript VSCode Extension](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript)
 * [Postman](https://www.getpostman.com/downloads/)
 
-Y además, necesitarás descargar las imágenes de los contenedores que vamos a utilizar:
+Y además, tendrás que descargar las imágenes Docker que utilizaremos:
 ```console
 $ git clone https://github.com/intersystems-ib/iris-dev-webapp
 $ cd iris-dev-webapp
