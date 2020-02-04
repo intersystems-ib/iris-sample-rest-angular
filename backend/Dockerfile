@@ -28,6 +28,7 @@ RUN cp netflix.csv input/
 # copy myapp source code
 WORKDIR /app
 COPY src src
+COPY data data
 
 # download zpm package manager
 RUN mkdir -p /tmp/deps \

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for UNIX (Ubuntu Server LTS for x86-64 Containers) 2019.4 (Build 379U)" ts="2020-02-04 09:16:08">
+<Global>
+<Node><Sub>^Ens.Conf.CredentialsD</Sub>
+<Node><Sub>GCP API Key</Sub>
+<DataBase64>AgECAQIBAgE=
+</DataBase64>
+</Node>
+</Node>
+</Global>
+</Export>
