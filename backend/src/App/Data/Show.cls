@@ -23,6 +23,9 @@ Property description As %String(MAXLEN = "");
 /// year (we use %String datatype to allow expressions like "2013 - 2014")
 Property year As %String;
 
+/// description translated using Google Cloud Translation services
+Property translatedDescription As %String(MAXLEN = "");
+
 /// casting of the show (one to many)
 Relationship cast As App.Data.Cast(%JSONREFERENCE = "ID") [ Cardinality = many, Inverse = show ];
 
@@ -32,7 +35,7 @@ Index showidIdx On showid [ IdKey, PrimaryKey, Unique ];
 /// This classmethod is used in the RESTForms2 query /form/objects/App.Data.Show/find
 ClassMethod queryFIND() As %String
 {
-  quit "showid id, title, year, description "
+  quit "showid id, title, year, description, translatedDescription "
 }
 
 Storage Default
@@ -49,6 +52,9 @@ Storage Default
 </Value>
 <Value name="4">
 <Value>year</Value>
+</Value>
+<Value name="5">
+<Value>translatedDescription</Value>
 </Value>
 </Data>
 <DataLocation>^App.Data.ShowD</DataLocation>

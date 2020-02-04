@@ -13,7 +13,7 @@
             <img mat-card-image [src]="'assets/img/'+show.id+'.jpg'">
 
             <mat-card-content>
-              <p>{{ show.description }}</p>
+              <p [matTooltip]="show.translatedDescription">{{ show.description }}</p>
             </mat-card-content>
 
             <mat-card-actions class="show-actions">
@@ -22,6 +22,9 @@
               </button>
               <button mat-mini-fab color="accent" matTooltip="Edit Show">
                 <mat-icon class="add-show-btn" (click)="editShow(show)">edit</mat-icon>
+              </button>
+              <button mat-mini-fab color="" matTooltip="Translate" [disabled]="canTranslateShow(show)">
+                <mat-icon (click)="translateShow(show)">g_translate</mat-icon>
               </button>
             </mat-card-actions>
 

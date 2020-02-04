@@ -6,6 +6,7 @@ export interface Show {
     name: string;
     description: string;
     year: string;
+    translatedDescription: string;
 }
 
 /**

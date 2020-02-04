@@ -1,13 +1,15 @@
 /// Translation operations on Shows<br/>
 /// Business logic class defined by OpenAPI in App.API.ShowTranslation.spec<br/>
-/// Updated Feb 3, 2020 15:29:23
+/// Updated Feb 4, 2020 09:34:15
 Class App.API.ShowTranslation.impl Extends (%REST.Impl, Ens.BusinessService) [ ProcedureBlock ]
 {
 
 /// If ExposeServerExceptions is true, then details of internal errors will be exposed.
 Parameter ExposeServerExceptions = 0;
 
-/// translateShow
+/// translates Show descriptions and updates object<br/>
+/// The method arguments hold values for:<br/>
+///     showId, Show id to translate<br/>
 ClassMethod translateShow(showId As %Integer) As %DynamicObject
 {
     set ret = $$$OK
@@ -33,8 +35,11 @@ ClassMethod translateShow(showId As %Integer) As %DynamicObject
         set sc = service.SendRequestSync("Spanish Translation Process", req, .rsp)
         $$$ThrowOnError(sc)
 
-        // handle response
-        // TODO
+        // handle response - store translation
+        set show.translatedDescription = rsp.StringValue
+        $$$ThrowOnError(show.%Save())
+
+        // return object
         do show.%JSONExportToString(.json)
         return json
 

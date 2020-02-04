@@ -10,6 +10,9 @@
         <button mat-icon-button [routerLink]="['/shows/' + show.id + '/cast']" matTooltip="Casting">
           <mat-icon>people_alt</mat-icon>
         </button>
+        <button mat-icon-button matTooltip="Translate" (click)="translateShow(show)" [disabled]="canTranslateShow(show)">
+          <mat-icon>g_translate</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
     
@@ -38,6 +41,11 @@
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
       <mat-cell *matCellDef="let show">{{ show.description }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="translatedDescription">
+      <mat-header-cell *matHeaderCellDef>Translated</mat-header-cell>
+      <mat-cell *matCellDef="let show" class="text-secondary">{{ show.translatedDescription }}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -64,4 +64,22 @@ export class ShowLatestComponent implements OnInit {
     .subscribe(() => this.loadData());
   }
   
+  /**
+   * Returns true if a show can be translated
+   * @param show 
+   */
+  canTranslateShow(show: Show): boolean {
+    return (show.translatedDescription !== undefined && show.translatedDescription.length > 0);
+  }
+
+  /**
+   * Requests a show translation (description)
+   * @param show 
+   */
+  translateShow(show: Show): void {
+    this.showsService.translateShow(show.id).subscribe(
+      show => this.loadData()
+    );  
+  }
+
 }

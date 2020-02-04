@@ -139,4 +139,22 @@ export class ShowsService {
     );
   }
 
+
+  /**
+   * Translate Show description
+   * @param id 
+   */
+  translateShow(id: number): Observable<Show> {
+    return this.http.get<Show>(
+      this.urlBase + `/translation/show/${id}`,
+      this.options
+    ).pipe(
+      // tap(data => console.log(data)),
+      catchError(err => {
+        this.alertService.error('[translateShow] ' + err.message)
+        return throwError(err);
+      })
+    );
+  }
+
 }

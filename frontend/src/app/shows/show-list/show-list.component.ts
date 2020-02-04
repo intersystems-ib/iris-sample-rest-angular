@@ -22,7 +22,7 @@ export class ShowListComponent implements AfterViewInit {
   totalResults: number = 0;
   
   /** columns that will be displayed */
-  displayedColumns = ['actions', 'title', 'year', 'description'];
+  displayedColumns = ['actions', 'title', 'year', 'description', 'translatedDescription'];
 
   /** filters that are using to query the server */
   filters: any = {};
@@ -91,6 +91,24 @@ export class ShowListComponent implements AfterViewInit {
       }
     }
     return query;
+  }
+
+  /**
+   * Returns true if a show can be translated
+   * @param show 
+   */
+  canTranslateShow(show: Show): boolean {
+    return (show.translatedDescription !== undefined && show.translatedDescription.length > 0);
+  }
+
+  /**
+   * Requests a show translation (description)
+   * @param show 
+   */
+  translateShow(show: Show): void {
+    this.showsService.translateShow(show.id).subscribe(
+      show => this.getDataPage(this.paginator.pageIndex, this.paginator.pageSize)
+    )  
   }
 
 }
