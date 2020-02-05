@@ -21,6 +21,13 @@ services:
     image: albertoft/irisdevwebapp-frontend:latest
     ports:
     - "4200:4200"
+
+    # usual way to ignore node_modules subfolder
+    # volumes:
+    #- ./frontend:/app
+    #- /app/node_modules
+    
+    # workaround to Docker issue https://github.com/moby/moby/issues/38564
     volumes:
-    - ./frontend:/app
-    - /app/node_modules
+    - ./frontend/e2e:/app/e2e
+    - ./frontend/src:/app/src
