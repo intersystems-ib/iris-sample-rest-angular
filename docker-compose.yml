@@ -5,8 +5,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: backend
-    container_name: backend
-    image: albertoft/irisdevwebapp-backend:latest
+    container_name: backend-demo
     ports:
     - "51773:51773"
     - "52773:52773"
@@ -17,8 +16,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: frontend
-    container_name: frontend
-    image: albertoft/irisdevwebapp-frontend:latest
+    container_name: frontend-demo
     ports:
     - "4200:4200"
 

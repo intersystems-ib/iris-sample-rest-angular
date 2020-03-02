@@ -1,122 +1,125 @@
-# Desarrollo aplicación Angular + InterSystems IRIS
+# Angular app + InterSystems IRIS
 
-Utilizaremos este repositorio para la sesión *Desarrollo de REST APIs y Web Apps sobre IRIS* del [Iberia Summit 2020](https://www.intersystems.com/es/noticias-eventos/eventos/iberia-summit-barcelona-2020-18-y-19-de-febrero/)
+This repository contains the code and instructions used during *REST APIs and Web Apps developing using IRIS* session in the [Iberia Summit 2020 (Spain)](https://www.intersystems.com/es/noticias-eventos/eventos/iberia-summit-barcelona-2020-18-y-19-de-febrero/)
 
 <a href="https://www.intersystems.com/es/noticias-eventos/eventos/iberia-summit-barcelona-2020-18-y-19-de-febrero/"><img src="./img/summit2020.jpg" width=500></a>
 
-# ¿Qué aprenderás?
-Desarrollaremos una aplicación web sobre el framework *Angular* utilizando como *backend* una instancia *InterSystems IRIS*. Veremos cómo podemos exponer los datos en formato JSON a través de APIs REST que podemos implementar o generar automáticamente.
- 
-La sesión está orientada hacia todos aquellos interesados en *cómo desarrollar aplicaciones web modernas* siguiendo la arquitectura de Single Page Application aprovechando al mismo tiempo las posibilidades de *InterSystems IRIS* como plataforma de datos.
+# What will you learn?
+We will develop a web application using the *Angular* framework and *InterSystems IRIS* as backend. We will expose persisted data in JSON format through REST APIs which could be fully implemented o generated automatically in IRIS.
+
+This content is addressed to all those interested in *how to develop modern web applications* following the Single Page Application architecture leveraging all the features of the *InterSystems IRIS* data platform.
 
 <img src="./img/iris-webapp.gif" width=500>
 
-# ¿Qué necesitas instalar?
-Para poder seguir la sesión con tu propio portátil necesitas instalar: 
+# What do you need to install? 
 * [Git](https://git-scm.com/downloads) 
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 * [Visual Studio Code](https://code.visualstudio.com/download) + [InterSystems ObjectScript VSCode Extension](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript)
 * [Postman](https://www.getpostman.com/downloads/)
 
-Y además, tendrás que descargar las imágenes Docker que utilizaremos:
+After that, you will be able to build the containers you need:
 ```console
-$ git clone https://github.com/es-comunidad-intersystems/IBSummit2020-AcademiaDevWebApp.git
-$ cd IBSummit2020-AcademiaDevWebApp
-$ docker-compose pull
+$ git clone https://github.com/intersystems-ib/iris-dev-webapp
+$ cd iris-dev-webapp
+$ docker-compose build
 ```
 
-# Puesta en marcha
-Para poner en marcha la academia, ejecuta lo siguiente:
+# Start up the project
+Run the following to get your containers started:
 ```
 $ docker-compose up
 ```
 
-Tendrás disponible lo siguiente: 
+After that, you should be able to get to: 
 * *Backend* - InterSystems IRIS: http://localhost:52773/csp/sys/UtilHome.csp
-* *Frontend* - Aplicación Web Angular: http://localhost:4200
+* *Frontend* - Angular Web App: http://localhost:4200
 
-# ¿Qué vamos a desarrollar?
-* Partiremos de un sistema que es capaz de procesar un *dataset* con información sobre NetFlix.
-* La información procesada se almacenará en clases persistentes en IRIS.
-* Expondremos la información almacenada en *JSON* a través de interfaces *REST* para poder consumirla desde una aplicación *Angular*.
-* Desarrollaremos nuevas funcionalidades sobre la aplicación web.
+# What are we developing?
+* We'll start from a system capable of processing a *dataset* containing Netflix catalog information.
+* This information will be stored in persistent clases in IRIS.
+* Then we will expose this information in *JSON* format through *REST* interfaces, so it could be consumed from an *Angular* application.
+* Finally, we will develop some new features into the web application.
 <img src="./frontend/src/assets/img/iris-webapp-diagram.png" width=700>
 
 # Backend
-NOTA: utiliza el usuario y password por defecto *superuser* / *SYS*
+NOTE: use the default username and password: **superuser** / **SYS**
 
-## Examinar *dataset* NetFlix
-* En IRIS tenemos creada una producción que se encarga de procesar un CSV con un *dataset* de Netflix.
-* Echa un vistazo a la producción y a los mensajes procesados en [Interoperability](http://localhost:52773/csp/myapp/EnsPortal.ProductionConfig.zen?PRODUCTION=App.Prod).
+## Have a look at the NetFlix *dataset*
+* In IRIS we already have a *production* responsible for processing the Netflix CSV *dataset*.
+* Have a look at the production and the processed messages in [Interoperability](http://localhost:52773/csp/myapp/EnsPortal.ProductionConfig.zen?PRODUCTION=App.Prod).
 
-## Explora los datos utilizando SQL / Objetos / JSON
-* Abre las clases `App.Data.Show` y `App.Data.Cast` utilizando VS Code. Estas clases utilizan `%JSON.Adaptor` para permitir exportar e importar información en formato JSON. En el artículo [Mejoras en Procesamiento JSON](https://es.community.intersystems.com/post/mejoras-en-procesamiento-json) tienes más información `%JSON.Adaptor` y como funciona.
-* Prueba a hacer un SELECT sobre la tabla `App_Data.Show` en el [SQL Explorer](http://localhost:52773/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=MYAPP)
-* Examina también a través de objetos la información cargada utilizando una sesión de [WebTerminal](http://localhost:52773/terminal/).
+## Explore the data using SQL / Objects / JSON
+* Open the classes `App.Data.Show` and `App.Data.Cast` using VS Code. These classes use `%JSON.Adaptor` to export / import data in JSON format. You can find more information about that in the [JSON Enhacements](https://community.intersystems.com/post/json-enhancements) article.
+* Run a SELECT on the `App_Data.Show` table using the [SQL Explorer](http://localhost:52773/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=MYAPP)
+* Explore the persistent objects with the loaded information using a [WebTerminal](http://localhost:52773/terminal/) session.
 ```objectscript
-// abrir objeto Show
+// open Show object
 set show = ##class(App.Data.Show).%OpenId(449931)
-// exportar a JSON
+// export to JSON
 do show.%JSONExport()
 ```
 
-## Interfaces REST
-Tenemos la información del *dataset* de Netflix almacenada y somos capaces de exportar / importar información desde nuestras clases persistentes utilizando `%JSON.Adaptor`.
+## REST Interfaces
+We have the Netflix *dataset* information stored and we are able to export / import the data from our persistent classes using `%JSON.Adaptor`.
 
-¿Cómo podemos consumir esa información en formato JSON desde una aplicación Angular? utilizaremos interfaces REST. Para nuestro caso tenemos dos opciones que podemos combinar.
+How can we consume that information in JSON format from an Angular application? We will use REST interfaces. In our case, we have two options to implement that: 
 
-### Implementar una API REST
-Podemos implementar una API REST con las operaciones que necesitemos partiendo de una especificación *OpenAPI*. 
-En el webinar [Desarrollar y gestionar APIs con InterSystems IRIS](https://comunidadintersystems.com/desarrollar-y-gestionar-apis-con-intersystems-iris) tienes un [ejemplo completo](https://github.com/es-comunidad-intersystems/webinar-gestion-apis) sobre cómo hacerlo.
+### Developing a REST API
+We can develop a REST API with the operations we need using a *OpenAPI* specification as starting point.
 
-### API REST automática
-[RESTForms2](https://openexchange.intersystems.com/package/RESTForms2) es una aplicación que nos permite generar APIs REST de forma automática para nuestras clases persistentes, de forma que soporten operaciones CRUD (Create, Read, Update, Delete). Incluso soporta consultas SQL que hayamos definido.
+You can find more information about that in:
+* Spanish Webinar - [Desarrollar y gestionar APIs con InterSystems IRIS](https://comunidadintersystems.com/desarrollar-y-gestionar-apis-con-intersystems-iris) and [full example](https://github.com/es-comunidad-intersystems/webinar-gestion-apis)
+* Article - [Developing REST API with a spec-first approach](https://community.intersystems.com/post/developing-rest-api-spec-first-approach) article.
 
-RESTForms2 ya está instalado en el contenedor *backend* de IRIS que estamos utilizando. Así que podemos probarlo directamente sobre nuestras clases `App.Data.Show` y `App.Data.Cast`:
-* Abre *Postman* e importa la colección `backend/postman/MyApp.postman_collection.json`.
-* Prueba los diferentes ejemplos incluídos en la colección.
+### Automatic generated REST APIs
+[RESTForms2](https://openexchange.intersystems.com/package/RESTForms2) is an application that allow us to generate CRUD (Create, Read, Update, Delete) REST APIs automatically for our persistent classes. Even SQL queries are supported!
+
+RESTForms2 is already installed in the *backend* container we are using and it's been enabled in the `App.Data.Show` y `App.Data.Cast` classes. So let's try it out:
+* Open *Postman* and import the `backend/postman/MyApp.postman_collection.json` collection.
+* Tests the different requests included in the collection.
 <img src="./img/postman-restforms2.png" width=700>
 
-Utilizaremos esta API REST generada automáticamente como base para la comunicación entre el *frontend* y el *backend*.
+We will use this automatically generated REST API to communicate the *frontend* and the *backend*. 
 
 # Frontend
-El *frontend* es una aplicación *Angular 8* muy sencilla que consume las interfaces REST del *backend* de manera que permiter realizar operaciones sobre las estructuras de datos que hemos visto antes en IRIS.
+The *frontend* is a very simple *Angular 8* application that consumes REST interfaces from *backend*.
 
-| Módulo | Descripción |
+| Module | Description |
 | --- | --- |
-| App | Módulo general de la aplicación |
-| AppRouting | Módulo encargado de gestionar las rutas (URLs) utilizadas en la aplicación |
-| About | Contiene el componente *about* que se usa como página inicial (*home*) de la aplicación |
-| Shared | Módulo compartido que incluye referencias a [Angular Material](https://material.angular.io)  |
-| Auth | Implementa autenticación básica contra el *backend* |
-| Shows | Servicios y componentes que utilizan las estructuras de datos `Show` y `Cast` del *backend*  |
+| App | General module of the application |
+| AppRouting | Module responsible for handling the routes (URLs) used int he application |
+| About | Contains the *about* component used as home page |
+| Shared | Shared module which includes [Angular Material](https://material.angular.io) references |
+| Auth | Basic authentication |
+| Shows | Services and components that use `Show` and `Cast` *backend* data structures  |
 
-Nos centraremos en el módulo *Shows*, que incluye:
+We will have a closer look at the *Shows* module:
 
-| Elemento | Descripción |
+| Element | Description |
 | --- | --- |
-| `shows.model` | Estructuras de datos `Show` y `Cast` que utilizaremos en la aplicación |
-| `shows.service` | Servicio que consume las interfaces REST *backend*. Los componentes utilizan este servicio   |
-| `show-latest` | Componente que muestra los `Shows` más reciente en formato tarjeta o *card*  |
-| `show-edit-dialog` | Componente que permite editar un `Show` utilizando un ventana de diálogo  |
-| `cast-list` | Componente que muestra en una tabla el casting `Cast` de un `Show` |
-| `cast-edit-dialog` | Componente que permite editar un `Cast` utilizando una ventana de diálogo |
-| `show-list` | Componente que muestra todos los `Show` en una tabla. Incluye paginación y búsqueda |
+| `shows.model` | `Show` and `Cast` data structures used in the application |
+| `shows.service` | Service that consumes *backend* interfaces. The components in this module will use this service. |
+| `show-latest` | Component that displays `Shows` in a card layout  |
+| `show-edit-dialog` | Component to edit a `Show` with a dialog  |
+| `cast-list` | Component that displays the `Cast` of a `Show` in a table |
+| `cast-edit-dialog` | Component to edit a `Cast` with a dialog |
+| `show-list` | Component that displays all `Show` in a table. Pagination and search included |
 
-Examina y prueba la aplicación. La tienes disponible en http://localhost:4200
+Test the application! http://localhost:4200
 
-NOTA: es recomendable que tengas activadas las *Developer Tools* de Chrome o Safari.
+## Feel like adding new features?
+We can develop some new features as an exercise.
 
-## ¿Hacemos algunos cambios?
-Te propongo implementar algunos cambios como ejercicio.
+### Add a button to display Cast in *show-list*
+Add a button to display the Cast of any show in the `show-list` table.
 
-### Botón para mostrar el casting de un Show en *show-list*
-Añadir un botón que nos permita acceder al casting de cualquier show de los que aparecen en la tabla de `show-list`.
-El componente `show-latest` ya tiene ese comportamiento. Se trata de replicarlo en la tabla de `show-list`. 
+The `show-latest` component has this button already. We need to do the same thing in the `show-list` table. 
 
 ___
-Añadiremos una nueva definición de columna en `show-list`. La llamaremos `actions` y la utilizaremos para colocar las acciones que queramos hacer sobre una fila de la tabla. Incluiremos un botón para navegar hacia el componente `cast-list` utilizando el identificador del `Show`.
+Add a new column definition in `show-list`. We will call this new column `actions` and we'll use it to contain the actions we want to perform on a table row.
+
+Include the button to navegate to the `cast-list` component using the `Show` identifier.
 
 > frontend/src/app/shows/show-list/show-list.component.html
 ```javascript
@@ -131,7 +134,7 @@ Añadiremos una nueva definición de columna en `show-list`. La llamaremos `acti
 ```
 
 ___
-La propiedad `displayedColumns` de `show-list` se utiliza para indicar al componente [mat-table](https://material.angular.io/components/table/overview) las columnas que debe mostrar. Tenemos que incluir aquí nuestra nueva columna `actions`.
+The property `displayedColumns` in `show-list` is used to define the columns (and order) we want to display in the [mat-table](https://material.angular.io/components/table/overview). Include here our new `actions` column.
 
 > frontend/src/app/shows/show-list/show-list.component.ts
 ```javascript
@@ -139,11 +142,11 @@ displayedColumns = ['actions', 'title', 'description'];
 ```
 
 
-### Incluir "year" como información que aparece en cada Show en la aplicación
-El *backend* (IRIS) ya tiene incluido `year` como una propiedad de `App.Data.Show` pero no lo estamos mostrando en la aplicación. A continuación vamos a incluirlo en diferentes puntos de nuestra aplicación:
+### Include "year" in every Show in the application
+The IRIS *backend* has already included `year` as a property of `App.Data.Show`. However we are not using it the application. We are going to include this property in the web aplication.
 
 ___
-Comenzamos por añadir añadir la propiedad `year` al modelo de datos que utilizamos en Angular
+Let's start by adding the `year` property to the data model we are using in Angular.
 
 > frontend/src/app/shows/shows.model.ts
 ```javacript
@@ -156,7 +159,7 @@ export interface Show {
 ```
 
 ___
-Modificaremos también la query `App.Data.Show:queryFIND` que estamos utilizando en el IRIS (a través de la API automática de RESTForms2) para incluir la propiedad `year`
+We also have to modify the `App.Data.Show:queryFIND` query in IRIS that we are using (through the automatically generated RESTForms2 API) to include the `year` property.
 
 > backend/src/App/Data/Show.cls
 ```objectscript
@@ -167,7 +170,7 @@ ClassMethod queryFIND() As %String
 ```
 
 ___
-Ahora ya podemos mostrar `year` en el componente `show-latest`
+Now, we can display `year` in `show-latest` component:
 
 > frontend/src/app/shows/show-latest/show-latest.component.html
 ```javascript
@@ -177,7 +180,7 @@ Ahora ya podemos mostrar `year` en el componente `show-latest`
 ```
 
 ___
-Vamos a permitir que se pueda modificar el campo `year` igualmente en `show-edit-dialog`
+Let's also allow to edit the `year` property in `show-edit-dialog`.
 
 > frontend/src/app/shows/show-edit-dialog/show-edit-dialog.component.ts
 ```javascript
@@ -197,7 +200,7 @@ Vamos a permitir que se pueda modificar el campo `year` igualmente en `show-edit
 ```
 
 ___
-También mostraremos `year` como una columna en `show-list` y ocultaremos la columna `id` ya que es un identificador interno. Para ello igual que antes vamos a crear una nueva definición de columna llamada `year`.
+Finally, we'll also display `year` a column in `show-list`. So like in the first exercise, we need to create a new column definition.
 
 > frontend/src/app/shows/show-list/show-list.component.html
 ```javascript
@@ -208,7 +211,7 @@ También mostraremos `year` como una columna en `show-list` y ocultaremos la col
 ```
 
 ___
-Cambiaremos la definición de las columnas que se muestran en el componente:
+And we need to update the displayedColumns property too:
 
 > frontend/src/app/shows/show-list/show-list.component.ts
 ```javascript
