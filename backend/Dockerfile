@@ -14,8 +14,9 @@ RUN chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/myapp
 USER irisowner
 
 # download RESTForms2
+# check RESTForms2 repo. it has zpm installation also available!
 WORKDIR /tmp 
-RUN wget https://github.com/albertoft/RESTForms2/archive/master.tar.gz
+RUN wget https://github.com/intersystems-community/RESTForms2/archive/master.tar.gz
 RUN tar -zxvf master.tar.gz
 WORKDIR /tmp/RESTForms2-master
 
