@@ -4,12 +4,14 @@ Utilizaremos este repositorio para la sesión *Desarrollo de REST APIs y Web App
 
 <a href="https://www.intersystems.com/es/noticias-eventos/eventos/iberia-summit-barcelona-2020-18-y-19-de-febrero/"><img src="./img/summit2020.jpg" width=500></a>
 
+Idiomas: [🇺🇸](README.md)[🇪🇸](README.es.md)
+
 # ¿Qué aprenderás?
 Desarrollaremos una aplicación web sobre el framework *Angular* utilizando como *backend* una instancia *InterSystems IRIS*. Veremos cómo podemos exponer los datos en formato JSON a través de APIs REST que podemos implementar o generar automáticamente.
  
 La sesión está orientada hacia todos aquellos interesados en *cómo desarrollar aplicaciones web modernas* siguiendo la arquitectura de Single Page Application aprovechando al mismo tiempo las posibilidades de *InterSystems IRIS* como plataforma de datos.
 
-<img src="./img/iris-webapp.gif" width=500>
+<img src="./img/iris-sample-rest-angular.gif" width=500>
 
 # ¿Qué necesitas instalar?
 Para poder seguir la sesión con tu propio portátil necesitas instalar: 
@@ -21,8 +23,8 @@ Para poder seguir la sesión con tu propio portátil necesitas instalar:
 
 Y además, tendrás que descargar las imágenes Docker que utilizaremos:
 ```console
-$ git clone https://github.com/es-comunidad-intersystems/IBSummit2020-AcademiaDevWebApp.git
-$ cd IBSummit2020-AcademiaDevWebApp
+$ git clone https://github.com/intersystems-ib/iris-sample-rest-angular
+$ cd iris-sample-rest-angular
 $ docker-compose pull
 ```
 

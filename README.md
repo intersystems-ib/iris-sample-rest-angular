@@ -4,12 +4,14 @@ This repository contains the code and instructions used during *REST APIs and We
 
 <a href="https://www.intersystems.com/es/noticias-eventos/eventos/iberia-summit-barcelona-2020-18-y-19-de-febrero/"><img src="./img/summit2020.jpg" width=500></a>
 
+Languages: [🇺🇸](README.md)[🇪🇸](README.es.md)
+
 # What will you learn?
 We will develop a web application using the *Angular* framework and *InterSystems IRIS* as backend. We will expose persisted data in JSON format through REST APIs which could be fully implemented o generated automatically in IRIS.
 
 This content is addressed to all those interested in *how to develop modern web applications* following the Single Page Application architecture leveraging all the features of the *InterSystems IRIS* data platform.
 
-<img src="./img/iris-webapp.gif" width=500>
+<img src="./img/iris-sample-rest-angular.gif" width=500>
 
 # What do you need to install? 
 * [Git](https://git-scm.com/downloads) 
@@ -20,8 +22,8 @@ This content is addressed to all those interested in *how to develop modern web 
 
 After that, you will be able to build the containers you need:
 ```console
-$ git clone https://github.com/intersystems-ib/iris-dev-webapp
-$ cd iris-dev-webapp
+$ git clone https://github.com/intersystems-ib/iris-sample-rest-angular
+$ cd iris-sample-rest-angular
 $ docker-compose build
 ```
 
