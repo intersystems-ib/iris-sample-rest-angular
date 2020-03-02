@@ -219,3 +219,7 @@ And we need to update the displayedColumns property too:
 ```javascript
 displayedColumns = ['actions', 'title', 'year', 'description'];
 ```
+
+And that's it!
+
+Don't forget to have a look at [angular-material-iris-starter](https://github.com/intersystems-community/angular-material-iris-starter) to learn about more complex features using Angular.
