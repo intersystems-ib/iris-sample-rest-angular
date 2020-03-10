@@ -216,3 +216,7 @@ Cambiaremos la definición de las columnas que se muestran en el componente:
 ```javascript
 displayedColumns = ['actions', 'title', 'year', 'description'];
 ```
+
+¡Y esto es todo!
+
+No olvides echarle un ojo a [angular-material-iris-starter](https://github.com/intersystems-community/angular-material-iris-starter) para aprender sobre funcionalidades un poco más complejas en Angular.
