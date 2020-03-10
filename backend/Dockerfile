@@ -53,12 +53,7 @@ RUN \
   zpm "install webterminal" \
   # install MyApp
   do $SYSTEM.OBJ.Load("/app/src/App/Installer.cls", "ck") \
-  set sc = ##class(App.Installer).Run() \
-  # iris config
-  zn "%SYS" \
-  do ##class(SYS.Container).QuiesceForBundling() \
-  do ##class(Security.Users).UnExpireUserPasswords("*") \
-  halt
+  set sc = ##class(App.Installer).Run()
 
 # bringing the standard shell back
 SHELL ["/bin/bash", "-c"]
