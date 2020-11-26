@@ -1,4 +1,4 @@
-ARG IMAGE=store/intersystems/iris-community:2019.4.0.379.0
+ARG IMAGE=intersystemsdc/iris-community:2020.3.0.221.0-zpm
 FROM $IMAGE
 
 USER root
@@ -48,17 +48,11 @@ RUN \
   set vars("SourcePath")="/tmp/RESTForms2-master/src/" \
   set sc = ##class(Form.Installer).Run(.vars) \
   zn "MYAPP" \
-  # install zpm
-  Do $system.OBJ.Load("/tmp/deps/zpm.xml", "ck") \
+  # install webterminal
   zpm "install webterminal" \
   # install MyApp
   do $SYSTEM.OBJ.Load("/app/src/App/Installer.cls", "ck") \
-  set sc = ##class(App.Installer).Run() \
-  # iris config
-  zn "%SYS" \
-  do ##class(SYS.Container).QuiesceForBundling() \
-  do ##class(Security.Users).UnExpireUserPasswords("*") \
-  halt
+  set sc = ##class(App.Installer).Run()
 
 # bringing the standard shell back
 SHELL ["/bin/bash", "-c"]

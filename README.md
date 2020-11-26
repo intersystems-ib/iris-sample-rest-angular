@@ -15,7 +15,7 @@ This content is addressed to all those interested in *how to develop modern web 
 
 # What do you need to install? 
 * [Git](https://git-scm.com/downloads) 
-* [Docker](https://www.docker.com/products/docker-desktop)
+* [Docker](https://www.docker.com/products/docker-desktop) (if you are using Windows, make sure you set your Docker installation to use "Linux containers").
 * [Docker Compose](https://docs.docker.com/compose/install/)
 * [Visual Studio Code](https://code.visualstudio.com/download) + [InterSystems ObjectScript VSCode Extension](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript)
 * [Postman](https://www.getpostman.com/downloads/)
